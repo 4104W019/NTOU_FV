@@ -4,32 +4,32 @@
 ---
 ## A: Create a project with QT
 ### 1. Create a project
-![](2021-10-18-19-10-16.png)
+![](./pics/2021-10-18-19-10-16.png)
 
 ### 2. Project name and folder path
 2.1. 名稱: 目錄名
 2.2. 建立於: 指定的路徑 
-![](2021-10-18-19-21-34.png)
+![](./pics/2021-10-18-19-21-34.png)
 
 
 ### 3. Test case name (Class name)
 指定Class 類別名稱
-![](2021-10-18-19-22-21.png)
+![](./pics/2021-10-18-19-22-21.png)
 
 ### 4. Kit Select 
 選擇編譯的工具
-![](2021-10-18-19-24-07.png)
+![](./pics/2021-10-18-19-24-07.png)
 
 ### 5. Finish
-![](2021-10-18-19-26-37.png)
+![](./pics/2021-10-18-19-26-37.png)
 
 ---
 ## B: Project and source code
 **A 部分執行完，會產生template 如下:**
 
-![](2021-10-18-19-31-59.png)
+![](./pics/2021-10-18-19-31-59.png)
 
-![](2021-10-18-19-33-13.png)
+![](./pics/2021-10-18-19-33-13.png)
 
 ---
 ## C: Sample code for unit test.
@@ -141,6 +141,6 @@ Totals: 5 passed, 0 failed, 0 skipped, 0 blacklisted, 1ms
 ********* Finished testing of LineCoverageTest *********
 20:03:47: D:/LinuxFolder/github/NTOU_FV/HW1/build-LineCoverage-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/debug/LineCoverage.exe exited with code 0
 ```
-![](2021-10-18-20-04-52.png)
+![](./pics/2021-10-18-20-04-52.png)
 
 
