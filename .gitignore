@@ -1,0 +1,8 @@
+*.o
+*.exe
+*.user
+*.moc
+*.Release
+*.Debug
+*.stash
+HW1/build-LineCoverage-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/debug/moc_predefs.h
