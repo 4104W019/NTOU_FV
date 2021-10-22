@@ -144,3 +144,8 @@ Totals: 5 passed, 0 failed, 0 skipped, 0 blacklisted, 1ms
 ![](./pics/2021-10-18-20-04-52.png)
 
 
+## TODO:
+[Using gcovr in windows.](https://gcovr.com/en/stable/installation.html) 
+```sh
+pip install git+https://github.com/gcovr/gcovr.git
+```
