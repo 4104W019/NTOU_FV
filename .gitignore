@@ -6,3 +6,9 @@
 *.Debug
 *.stash
 HW1/build-LineCoverage-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/debug/moc_predefs.h
+HW1/LineCoverage/release/
+HW1/LineCoverage/debug/ggg.css
+HW1/LineCoverage/Makefile
+HW1/LineCoverage/moc_predefs.h
+HW1/LineCoverage/target_wrapper.bat
+HW1/LineCoverage/debug/

@@ -1,0 +1,50 @@
+        -:    0:Source:test.c
+        -:    0:Graph:test.gcno
+        -:    0:Data:test.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include <stdlib.h>
+        -:    3:
+function isNum called 13 returned 100% blocks executed 100%
+       13:    4:int isNum(int n)
+       13:    4-block  0
+        -:    5:{
+       13:    6:	if(n>10)
+       13:    6-block  0
+branch  0 taken 8% (fallthrough)
+branch  1 taken 92%
+        1:    7:		return 2;
+        1:    7-block  0
+       12:    8:	else if(n>5)
+       12:    8-block  0
+branch  0 taken 42% (fallthrough)
+branch  1 taken 58%
+        5:    9:		return 1;
+        5:    9-block  0
+        7:   10:	else if(n>=0)
+        7:   10-block  0
+branch  0 taken 86% (fallthrough)
+branch  1 taken 14%
+        6:   11:		return 0;
+        6:   11-block  0
+        -:   12:	else 
+        1:   13:		return -1;
+        1:   13-block  0
+        -:   14:}
+function main called 1 returned 100% blocks executed 100%
+        1:   15:int main (int argc, char* argv[])
+        1:   15-block  0
+        -:   16:{
+        1:   17:	int i = 0;
+       14:   18:	for(i=-1;i<12;++i)
+        1:   18-block  0
+       14:   18-block  1
+branch  0 taken 93%
+branch  1 taken 7% (fallthrough)
+       13:   19:		isNum(i);
+       13:   19-block  0
+call    0 returned 100%
+        1:   20:	return 0;
+        1:   20-block  0
+        -:   21:}
