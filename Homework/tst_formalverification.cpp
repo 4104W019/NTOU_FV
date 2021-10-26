@@ -8,6 +8,11 @@ class FormalVerification : public QObject
 {
     Q_OBJECT
 
+    void doHW1_data();
+    void doHW1();
+    void doHW2_data();
+    void doHW2();
+
 public:
     FormalVerification();
     ~FormalVerification();
@@ -26,21 +31,11 @@ private slots:
      */
     void test_case1();
 
-    void test_case2_data();
-    void test_case2();
+//    void test_case2_data();
+//    void test_case2();
 };
 
-FormalVerification::FormalVerification()
-{
-
-}
-
-FormalVerification::~FormalVerification()
-{
-
-}
-
-void FormalVerification::test_case1_data()
+void FormalVerification::doHW1_data()
 {
     QTest::addColumn<bool>("result");
     QTest::addColumn<bool>("except");
@@ -54,7 +49,8 @@ void FormalVerification::test_case1_data()
         QTest::newRow(QString::number(i).toStdString().c_str()) << lineCoverage.isGreatThanZero(i) << except;
     }
 }
-void FormalVerification::test_case1()
+
+void FormalVerification::doHW1()
 {
     /**
      * @brief QFETCH
@@ -66,8 +62,7 @@ void FormalVerification::test_case1()
 
     QCOMPARE(result, except);
 }
-
-void FormalVerification::test_case2_data()
+void FormalVerification::doHW2_data()
 {
     QTest::addColumn<int>("result");
     QTest::addColumn<int>("except");
@@ -77,10 +72,11 @@ void FormalVerification::test_case2_data()
     int excepts[4] = {-1,0,30,33};  /// sum = 1+2+...+n, if(sum%2) sum /= 2; else sum *= 2
 
     for(int i=0; i<4; ++i){
-        QTest::newRow(QString::number(i).toStdString().c_str()) << edgeCoverage.testLoop(test[i]) << excepts[i];
+        QTest::newRow(QString::number(test[i]).toStdString().c_str()) << edgeCoverage.testLoop(test[i]) << excepts[i];
     }
 }
-void FormalVerification::test_case2()
+
+void FormalVerification::doHW2()
 {
     /**
      * @brief QFETCH
@@ -93,6 +89,24 @@ void FormalVerification::test_case2()
     QCOMPARE(except, result);
 }
 
+FormalVerification::FormalVerification()
+{
+
+}
+
+FormalVerification::~FormalVerification()
+{
+
+}
+
+void FormalVerification::test_case1_data()
+{
+    doHW2_data();
+}
+void FormalVerification::test_case1()
+{
+    doHW2();
+}
 
 QTEST_APPLESS_MAIN(FormalVerification)
 
