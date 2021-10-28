@@ -8,12 +8,12 @@ public:
     LineCoverage();
 
     /**
-     * @brief isGreatThanZero
+     * @brief theScoreGrade
      *  Used to be an unit test API.
-     * @param i [IN]
-     * @return true if i>=0, otherwise false
+     * @param i [IN]: the score
+     * @return 'X': <0 or >100; 'A'>=90; 'B'>=80'; otherwise 'C': 0~79
      */
-    bool isGreatThanZero(int i);
+    char theScoreGrade(int i);
 };
 
 #endif // LINECOVERAGE_H
