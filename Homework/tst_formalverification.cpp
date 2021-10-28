@@ -42,16 +42,15 @@ FormalVerification::~FormalVerification()
 
 void FormalVerification::test_case1_data()
 {
-    QTest::addColumn<bool>("result");
-    QTest::addColumn<bool>("except");
+    QTest::addColumn<char>("result");
+    QTest::addColumn<char>("except");
 
     LineCoverage lineCoverage;
-    bool except = true;
-    for(int i=-1; i<2; ++i){
-        if(i<0)
-            except = false;
-        else except = true;
-        QTest::newRow(QString::number(i).toStdString().c_str()) << lineCoverage.isGreatThanZero(i) << except;
+    int test[7] = {-3,0,30,82,93,100,101};
+    char excepts[7] = {'X','C','C','B','A','A','X'};
+
+    for(int i=0; i<7; ++i){
+        QTest::newRow(QString::number(test[i]).toStdString().c_str()) << lineCoverage.theScoreGrade(test[i]) << excepts[i];
     }
 }
 void FormalVerification::test_case1()
@@ -61,8 +60,8 @@ void FormalVerification::test_case1()
      * This macro can only be used in a test function that is invoked by the test framework.
      * The test function must have a _data function.
      */
-    QFETCH(bool, result);
-    QFETCH(bool, except);
+    QFETCH(char, result);
+    QFETCH(char, except);
 
     QCOMPARE(result, except);
 }
