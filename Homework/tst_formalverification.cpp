@@ -28,6 +28,9 @@ private slots:
 
     void test_case2_data();
     void test_case2();
+
+    void test_case1_1_data();
+    void test_case1_1();
 };
 
 FormalVerification::FormalVerification()
@@ -91,8 +94,30 @@ void FormalVerification::test_case2()
 
     QCOMPARE(except, result);
 }
+void FormalVerification::test_case1_1_data()
+{
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<int>("expect");
 
+    QTest::newRow("<Null>")     << ""           << 0;
+    QTest::newRow("Monday")     << "Monday"     << 1;
+    QTest::newRow("Tuesday")    << "Tuesday"    << 2;
+    QTest::newRow("Wednesday")  << "Wednesday"  << 3;
+    QTest::newRow("Thursday")   << "Thursday"   << 4;
+    QTest::newRow("Friday")     << "Friday"     << 5;
+    QTest::newRow("Saturday")   << "Saturday"   << 6;
+    QTest::newRow("Sunday")     << "Sunday"     << 7; /* 找到程式上的錯誤!  (lineCoverage::WeekName2Numbe) */
+    QTest::newRow("Out of")     << "ABCDEFB"    << 0;
+}
+void FormalVerification::test_case1_1()
+{
+    LineCoverage lineCoverage;
 
+    QFETCH(QString, input);
+    QFETCH(int, expect);
+    QCOMPARE(lineCoverage.WeekName2Number(input), expect);
+
+}
 QTEST_APPLESS_MAIN(FormalVerification)
 
 #include "tst_formalverification.moc"
