@@ -5,14 +5,14 @@ LineCoverage::LineCoverage()
 
 }
 
-char LineCoverage::theScoreGrade(int i)
+int LineCoverage::thePartialSums(uint32_t inputNumber)
 {
-    if(i<0 || i>100)
-        return 'X';
-    else if(i>=90)
-        return 'A';
-    else if(i>=80)
-        return 'B';
-    else
-        return 'C';
+    int result = 0;
+    if(inputNumber > 10)
+        result = -1;
+    else{
+        for(uint32_t i = 1; i <= inputNumber; ++i)
+            result += i;
+    }
+    return result;
 }

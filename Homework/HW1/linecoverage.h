@@ -1,6 +1,6 @@
 #ifndef LINECOVERAGE_H
 #define LINECOVERAGE_H
-
+#include <stdint.h>
 
 class LineCoverage
 {
@@ -8,12 +8,13 @@ public:
     LineCoverage();
 
     /**
-     * @brief theScoreGrade
+     * @brief thePartialSums
      *  Used to be an unit test API.
-     * @param i [IN]: the score
-     * @return 'X': <0 or >100; 'A'>=90; 'B'>=80'; otherwise 'C': 0~79
+     * @param inputNumber [IN]: the score
+     * @return thePartialSums, if(inputNumber>10) return -1;
+     *                          else return inputNumber(inputNumber+1)/2 >1
      */
-    char theScoreGrade(int i);
+    int thePartialSums(uint32_t inputNumber);
 };
 
 #endif // LINECOVERAGE_H

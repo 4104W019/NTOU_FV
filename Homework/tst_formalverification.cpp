@@ -25,7 +25,7 @@ private slots:
      * To fetch these values in the actual test
      */
     void test_case1();
-
+//private:
     void test_case2_data();
     void test_case2();
 };
@@ -42,26 +42,24 @@ FormalVerification::~FormalVerification()
 
 void FormalVerification::test_case1_data()
 {
-    QTest::addColumn<char>("result");
-    QTest::addColumn<char>("except");
+    QTest::addColumn<int>("result");
+    QTest::addColumn<int>("except");
 
     LineCoverage lineCoverage;
-    int test[7] = {-3,0,30,82,93,100,101};
-    char excepts[7] = {'X','C','C','B','A','A','X'};
+    uint32_t test[2] = {17,9};
+    int excepts[2] = {-1,45};
 
-    for(int i=0; i<7; ++i){
-        QTest::newRow(QString::number(test[i]).toStdString().c_str()) << lineCoverage.theScoreGrade(test[i]) << excepts[i];
+    for(int i=0; i<2; ++i){
+        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+                << lineCoverage.thePartialSums(test[i]) ///< here
+                << excepts[i];
     }
 }
+
 void FormalVerification::test_case1()
 {
-    /**
-     * @brief QFETCH
-     * This macro can only be used in a test function that is invoked by the test framework.
-     * The test function must have a _data function.
-     */
-    QFETCH(char, result);
-    QFETCH(char, except);
+    QFETCH(int, result);
+    QFETCH(int, except);
 
     QCOMPARE(result, except);
 }
@@ -72,20 +70,18 @@ void FormalVerification::test_case2_data()
     QTest::addColumn<int>("except");
 
     EdgeCoverage edgeCoverage;
-    int test[4] = {-3,0,5,11};
-    int excepts[4] = {-1,0,30,33};  /// sum = 1+2+...+n, if(sum%2) sum /= 2; else sum *= 2
+    int test[3] = {-3,0,5};
+    int excepts[3] = {-1,0,30};  /// sum = 1+2+...+n, if(sum%2) sum /= 2; else sum *= 2
 
-    for(int i=0; i<4; ++i){
-        QTest::newRow(QString::number(i).toStdString().c_str()) << edgeCoverage.testLoop(test[i]) << excepts[i];
+    for(int i=0; i<3; ++i){
+        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+                << edgeCoverage.testLoop(test[i])
+                << excepts[i];
     }
 }
+
 void FormalVerification::test_case2()
 {
-    /**
-     * @brief QFETCH
-     * This macro can only be used in a test function that is invoked by the test framework.
-     * The test function must have a _data function.
-     */
     QFETCH(int, except);
     QFETCH(int, result);
 
