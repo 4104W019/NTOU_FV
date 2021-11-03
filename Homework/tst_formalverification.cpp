@@ -31,6 +31,8 @@ private slots:
 
     void test_case1_1_data();
     void test_case1_1();
+    void test_EdgePair_data();
+    void test_EdgePair();
 };
 
 FormalVerification::FormalVerification()
@@ -108,6 +110,30 @@ void FormalVerification::test_case1_1_data()
     QTest::newRow("Saturday")   << "Saturday"   << 6;
     QTest::newRow("Sunday")     << "Sunday"     << 7; /* 找到程式上的錯誤!  (lineCoverage::WeekName2Numbe) */
     QTest::newRow("Out of")     << "ABCDEFB"    << 0;
+}
+void FormalVerification::test_EdgePair_data()
+{
+    QTest::addColumn<QString>("input");
+    QTest::addColumn<int>("expect");
+
+    //QTest::newRow("Edge 1 - 2")     << "None"       << 0; // 不測
+    //QTest::newRow("Edge 2 - 3")     << "Monday"     << 1; // 不測
+    QTest::newRow("Edge 3 - 4")    << "None"    << 0;
+    QTest::newRow("Edge 4 - 5")    << "None"    << 0;
+    QTest::newRow("Edge 4 - 8")    << "OutOfRange" << 0;
+    QTest::newRow("Edge 5 - 6")   << "Monday"   << 1;
+    QTest::newRow("Edge 5 - 7")     << "Monday"     << 1;
+    QTest::newRow("Edge 6 - 4")     << "Monday"     << 1;
+
+}
+void FormalVerification::test_EdgePair()
+{
+    LineCoverage lineCoverage;
+
+    QFETCH(QString, input);
+    QFETCH(int, expect);
+
+    QCOMPARE(lineCoverage.WeekName2Number(input), expect);
 }
 void FormalVerification::test_case1_1()
 {
