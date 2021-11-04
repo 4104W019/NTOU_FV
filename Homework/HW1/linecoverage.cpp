@@ -1,10 +1,5 @@
 #include "linecoverage.h"
 
-LineCoverage::LineCoverage()
-{
-
-}
-
 int LineCoverage::thePartialSums(uint32_t inputNumber)
 {
     int result = 0;

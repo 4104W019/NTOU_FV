@@ -1,10 +1,5 @@
 #include "edgecoverage.h"
 
-EdgeCoverage::EdgeCoverage()
-{
-
-}
-
 int EdgeCoverage::testLoop(int inputNumber)
 {
     int result = 0;

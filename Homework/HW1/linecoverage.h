@@ -5,7 +5,7 @@
 class LineCoverage
 {
 public:
-    LineCoverage();
+    LineCoverage(){}
 
     /**
      * @brief thePartialSums

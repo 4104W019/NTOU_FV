@@ -12,7 +12,8 @@ LIBS += -lgcov
 
 SOURCES +=  tst_formalverification.cpp \
     HW1/linecoverage.cpp \
-    HW2/edgecoverage.cpp
+    HW2/edgecoverage.cpp \
+    HW2/edgepaircoverage.cpp
 
 HEADERS += \
     HW1/linecoverage.h \

@@ -28,6 +28,9 @@ private slots:
 //private:
     void test_case2_data();
     void test_case2();
+    void test_case22_data();
+    void test_case22();
+
 };
 
 FormalVerification::FormalVerification()
@@ -81,6 +84,30 @@ void FormalVerification::test_case2_data()
 }
 
 void FormalVerification::test_case2()
+{
+    QFETCH(int, except);
+    QFETCH(int, result);
+
+    QCOMPARE(except, result);
+}
+
+void FormalVerification::test_case22_data()
+{
+    QTest::addColumn<int>("result");
+    QTest::addColumn<int>("except");
+
+    EdgeCoverage edgeCoverage;
+    uint32_t test[3] = {11,5,0};
+    int excepts[3] = {-1,15,0};
+
+    for(int i=0; i<3; ++i){
+        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+                << edgeCoverage.testEdgePairCoverage(test[i])
+                << excepts[i];
+    }
+}
+
+void FormalVerification::test_case22()
 {
     QFETCH(int, except);
     QFETCH(int, result);
