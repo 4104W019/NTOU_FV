@@ -1,4 +1,87 @@
 # Graph Coverage
+### Sample Code
+```c++
+int EdgeCoverage::testEdgePairCoverage(uint32_t inputNumber)	//1
+{
+    int result = 0;		//2
+    if(inputNumber < 10)	//3
+    {
+        for(uint32_t i = 1; i <= inputNumber; ++i)
+        {				//4					//5		//6
+           result += i;		//7
+        }
+        return result;		//8
+    }
+    else
+        return -1;		//9
+}
+```
+
+### Flow Chart
+![](../../HW1/pics/GraphCoverage.png)
+
+### Test-Case
+```c++
+void FormalVerification::test_case22_data()
+{
+    QTest::addColumn<int>("result");
+    QTest::addColumn<int>("except");
+
+    EdgeCoverage edgeCoverage;
+    uint32_t test[3] = {17,5,0};
+    int excepts[3] = {-1,15,0};
+
+    for(int i=0; i<3; ++i){
+        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+                << edgeCoverage.testEdgePairCoverage(test[i])
+                << excepts[i];
+    }
+}
+
+void FormalVerification::test_case22()
+{
+    QFETCH(int, except);
+    QFETCH(int, result);
+
+    QCOMPARE(except, result);
+}
+```
+
+### Edge-Pair Coverage
+* test case 1
+	1. Input values: inputNumber "17" 
+	2. Expected result: "-1"
+	3. Test program's result: "-1"
+	4. Edge-Pair Coverage: (1,2,3),(2,3,9)
+* test case2
+	1. Input values: inputNumber "1" 
+	2. EXpected result: "1"
+	3. Test program's result: "1"
+	4. Edge-Pair Coverage: (1,2,3),(2,3,4),(3,4,5),(4,5,8)
+*  test case3
+	1. Input values: inputNumber "2" 
+	2. EXpected result: "2"
+	3. Test program's result: "2"
+	4. Edge-Pair Coverage: (1,2,3),(2,3,4),(3,4,5),(4,5,7),(5,7,6),(7,6,5),(6,5,8)
+
+### Test Path Coverage
+* test case 1
+	1. Input values: inputNumber "17"
+	2. Expected result: "-1"
+	3. Test program's result: "-1"
+	4. Test Path Coverage: 1->9(1,2,3,9)
+* test case 2
+	1. Input values: inputNumber "1"
+	2. Expected result: "1"
+	3. Test program's result: "1"
+	4. Test Path Coverage: 1->8(1,2,3,4,5,8)	//no loop
+* test case 3
+	1. Input values: inputNumber "2"
+	2. Expected result: "2"
+	3. Test program's result: "2"
+	4. Test Path Coverage: 1->8(1,2,3,4,5,7,6,5,8)	//loop
+
+# Graph Coverage
 ### Edge-Pair Coverage
 * test case 1
 	1. Input values: inputNumber "17" 
