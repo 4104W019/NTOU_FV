@@ -7,7 +7,7 @@ int EdgeCoverage::testEdgePairCoverage(uint32_t inputNumber)	//1
     if(inputNumber < 10)	//3
     {
         for(uint32_t i = 1; i <= inputNumber; ++i)
-        {				//4					//5		//6
+        {		//4		//5		//6
            result += i;		//7
         }
         return result;		//8
@@ -31,8 +31,8 @@ void FormalVerification::test_case22_data()
     QTest::addColumn<int>("except");
 
     EdgeCoverage edgeCoverage;
-    uint32_t test[3] = {17,1,2};
-    int excepts[3] = {-1,1,3};
+    uint32_t test[3] = {17,0,2};
+    int excepts[3] = {-1,0,3};
 
     for(int i=0; i<3; ++i){
         QTest::newRow(QString::number(test[i]).toStdString().c_str())
@@ -58,8 +58,8 @@ void FormalVerification::test_case22()
 	4. Edge-Pair Coverage: (1,2,3),(2,3,9)
 * test case2
 	1. Input values: inputNumber "1" 
-	2. EXpected result: "1"
-	3. Test program's result: "1"
+	2. EXpected result: "0"
+	3. Test program's result: "0"
 	4. Edge-Pair Coverage: (1,2,3),(2,3,4),(3,4,5),(4,5,8)
 *  test case3
 	1. Input values: inputNumber "2" 
@@ -74,9 +74,9 @@ void FormalVerification::test_case22()
 	3. Test program's result: "-1"
 	4. Test Path Coverage: 1->9(1,2,3,9)
 * test case 2
-	1. Input values: inputNumber "1"
-	2. Expected result: "1"
-	3. Test program's result: "1"
+	1. Input values: inputNumber "0"
+	2. Expected result: "0"
+	3. Test program's result: "0"
 	4. Test Path Coverage: 1->8(1,2,3,4,5,8)	//no loop
 * test case 3
 	1. Input values: inputNumber "2"
