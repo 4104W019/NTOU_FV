@@ -21,7 +21,7 @@ int EdgeCoverage::testEdgePairCoverage(uint32_t inputNumber)	//1
 ![](../../HW1/pics/GraphCoverage.png)
 
 ## Coverage Report
-![](../../HW1/pics/CoverageReport.png)
+![](./pics/CoverageReport.png)
 
 ### Test-Case
 ```c++
