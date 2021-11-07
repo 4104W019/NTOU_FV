@@ -3,6 +3,7 @@
 // add necessary includes here
 #include "HW1/linecoverage.h"
 #include "HW2/edgecoverage.h"
+#include "HW3/stresstesting.h"
 
 class FormalVerification : public QObject
 {
@@ -13,6 +14,9 @@ public:
     ~FormalVerification();
 
 private slots:
+    void HW3_stress_test_data();
+    void HW3_stress_test();
+private:
     /**
      * @brief test_case1_data
      * fill the test pattern for test_case1.
@@ -115,6 +119,15 @@ void FormalVerification::test_case22()
     QCOMPARE(except, result);
 }
 
+void FormalVerification::HW3_stress_test_data()
+{
+    StressTesting http_get;
+    http_get.testStressTesting("/index.html", 8);
+}
+void FormalVerification::HW3_stress_test()
+{
+
+}
 
 QTEST_APPLESS_MAIN(FormalVerification)
 

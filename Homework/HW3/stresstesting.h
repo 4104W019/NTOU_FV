@@ -6,7 +6,7 @@ class StressTesting
 {
 public:
     StressTesting(){}
-    int testStressTesting(int input);
+    int testStressTesting(char *url, int length);
 };
 
 #endif // STRESSTESTING_H
