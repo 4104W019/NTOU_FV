@@ -34,18 +34,22 @@ static char *parser_http_get_url(char *buf, char *path)
 	*e = ' ';
 	return path;
 }
-static void http_get(int s, char *path)
+static int http_get(int s, char *path, int path_len)
 {
 	int fd, len;
 	char buf[4096];
 
+	if (path_len == 0)
+		goto not_found;
+	fprintf(stderr, "PTM:%s %d(%s)\n", __FUNCTION__, __LINE__, path);
 	if (strcmp(path, "/") == 0)
 		strcpy(path, "index.html");
+	fprintf(stderr, "PTM:%s %d\n", __FUNCTION__, __LINE__);
 	if (*path == '/')
 		path++;
 	if ((fd = open(path, O_RDONLY)) == -1)
 		goto not_found;
-	
+
 	http_puts(s, "HTTP/1.1 200 OK\r\n");
 	http_puts(s, "Connection: close\r\n");
 	http_puts(s, "Content-Type: text/html\r\n\r\n");
@@ -55,13 +59,25 @@ static void http_get(int s, char *path)
 		http_send(s, buf, len);
 	}
 	close(fd);
-	return;
+	return 0;
 not_found:
 	http_puts(s, "HTTP/1.1 404 Not Found\r\n\r\n");
+	return -1;
 }
-
-int StressTesting::testStressTesting(char *url, int length)
+/*
+ *  Parsring @url and feedback HTTP header/bodys to @stderr.
+ *  Return 0 success, -1 failure.
+ */
+#define MAX_PATH_LEN	24
+int StressTesting::testStressTesting(char *url, int path_len)
 {
-    http_get(2, url);
-    return 0;
+    char path[MAX_PATH_LEN];
+    
+    //fprintf(stderr, "PTM:%s %d, url:%s, n = %d\n", __FUNCTION__, __LINE__, url, path_len);
+    if (path_len >  MAX_PATH_LEN)
+        return -1;
+    if (url == NULL)
+        return -1;
+    strncpy(path, url, MAX_PATH_LEN - 1);
+    return http_get(2 /* @stderr */, path, path_len);
 }

@@ -121,12 +121,36 @@ void FormalVerification::test_case22()
 
 void FormalVerification::HW3_stress_test_data()
 {
-    StressTesting http_get;
-    http_get.testStressTesting("/index.html", 8);
+    struct patten{
+        const char *desc;
+        const char *path;
+        int except;
+    } ps [] = {
+        {"Zero length", "", -1},
+        {"Min", "/", 0},
+        {"standard","/index.html", 0},
+        {"Max","XXXXXXXXXXXXXXXXXXXXXXXX", -1},
+        {NULL, NULL, 0}
+    }, *p = ps;
+
+    QTest::addColumn<QString>("path");
+    QTest::addColumn<int>("path_len");
+    QTest::addColumn<int>("except");
+
+    for (; p->desc != NULL; p++)
+   	QTest::newRow(p->desc)    << p->path   << (int)strlen(p->path) << p->except;
+    
 }
 void FormalVerification::HW3_stress_test()
 {
+    QFETCH(QString, path);
+    QFETCH(int, path_len);
+    QFETCH(int, except);
 
+    StressTesting http_get;
+    printf("input :%s epect: %d\n", path.toLocal8Bit().data(), except);
+
+    QCOMPARE(except, http_get.testStressTesting((char *) path.toLocal8Bit().data(), path_len));
 }
 
 QTEST_APPLESS_MAIN(FormalVerification)
