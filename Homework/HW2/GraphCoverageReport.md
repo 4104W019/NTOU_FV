@@ -19,7 +19,7 @@ int EdgeCoverage::testEdgePairCoverage(uint32_t inputNumber)	//1
 ```
 
 ### Flow Chart
-![](../../HW1/pics/GraphCoverage.png)
+![](./pics/GraphCoverage.png)
 
 ### Coverage Report
 ![](./pics/CoverageReport.png)
