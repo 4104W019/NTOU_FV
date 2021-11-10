@@ -12,7 +12,6 @@ class FormalVerification : public QObject
 public:
     FormalVerification();
     ~FormalVerification();
-
 private slots:
     void HW3_stress_test_data();
     void HW3_stress_test();
@@ -126,10 +125,11 @@ void FormalVerification::HW3_stress_test_data()
         const char *path;
         int except;
     } ps [] = {
-        {"Zero length", "", -1},
-        {"Min", "/", 0},
-        {"standard","/index.html", 0},
-        {"Max","XXXXXXXXXXXXXXXXXXXXXXXX", -1},
+        {"空指標", NULL, -1},
+        {"長度為0", "", -1},
+        {"最小輸入", "/", 0},
+        {"一般","/index.html", 0},
+        {"最大輸入","XXXXXXXXXXXXXXXXXXXXXXXXXX", -1},
         {NULL, NULL, 0}
     }, *p = ps;
 
@@ -137,8 +137,12 @@ void FormalVerification::HW3_stress_test_data()
     QTest::addColumn<int>("path_len");
     QTest::addColumn<int>("except");
 
-    for (; p->desc != NULL; p++)
-   	QTest::newRow(p->desc)    << p->path   << (int)strlen(p->path) << p->except;
+    for (; p->desc != NULL; p++) {
+        int len = p->path == nullptr ? (int)0:(int)strlen(p->path);
+   	QTest::newRow(p->desc) << p->path << len << p->except;
+   	//QTest::newRow(p->desc)    << p->path   << p->path == nullptr ? (int)1:(int)strlen(p->path) << p->except;
+    }
+   	//QTest::newRow(p->desc)    << p->path   << 1 << p->except;
     
 }
 void FormalVerification::HW3_stress_test()
@@ -148,7 +152,9 @@ void FormalVerification::HW3_stress_test()
     QFETCH(int, except);
 
     StressTesting http_get;
-    printf("input :%s epect: %d\n", path.toLocal8Bit().data(), except);
+
+    printf("\n現在測式: (%-20s) 輸入字串 :(\"%s\") 輸入長度: (%d) , 預期回傳值: (%d)\n", 
+       QTest::currentDataTag(), path.toLocal8Bit().data(), path_len, except);
 
     QCOMPARE(except, http_get.testStressTesting((char *) path.toLocal8Bit().data(), path_len));
 }

@@ -9,31 +9,16 @@
 #include <errno.h>
 
 
-int http_recv(int s, char *buf, int len)
-{
-	return read(s, buf, len);
-}
 int http_send(int s, const char *buf, int len)
 {
-	return write(s, buf, len);
+	return len;
+	//return write(s, buf, len);
 }
 int http_puts(int s, const char *buf)
 {
 	return http_send(s, buf, strlen(buf));
 }
-/*
- * parser GET url from @buf eg: "GET /test.html HTTP/1.1"
- * */
-static char *parser_http_get_url(char *buf, char *path)
-{
-	char *p, *e;
-	p = buf + 4;		// @buf = "GET /test.html HTTP/1.1"
-	e = strchr(p, ' ');
-	*e = '\0';
-	strcpy(path, p);	// @path = "/test.html"
-	*e = ' ';
-	return path;
-}
+
 static int http_get(int s, char *path, int path_len)
 {
 	int fd, len;
@@ -41,10 +26,10 @@ static int http_get(int s, char *path, int path_len)
 
 	if (path_len == 0)
 		goto not_found;
-	fprintf(stderr, "PTM:%s %d(%s)\n", __FUNCTION__, __LINE__, path);
+	//fprintf(stderr, "PTM:%s %d(%s)\n", __FUNCTION__, __LINE__, path);
 	if (strcmp(path, "/") == 0)
 		strcpy(path, "index.html");
-	fprintf(stderr, "PTM:%s %d\n", __FUNCTION__, __LINE__);
+	//fprintf(stderr, "PTM:%s %d\n", __FUNCTION__, __LINE__);
 	if (*path == '/')
 		path++;
 	if ((fd = open(path, O_RDONLY)) == -1)
@@ -53,8 +38,6 @@ static int http_get(int s, char *path, int path_len)
 	http_puts(s, "HTTP/1.1 200 OK\r\n");
 	http_puts(s, "Connection: close\r\n");
 	http_puts(s, "Content-Type: text/html\r\n\r\n");
-	//sprintf(buf, "Content-Length: %d\r\n\r\n", 17);
-	//http_puts(s, buf);
 	while ((len = read(fd, buf, sizeof(buf))) > 0) {
 		http_send(s, buf, len);
 	}
@@ -73,7 +56,6 @@ int StressTesting::testStressTesting(char *url, int path_len)
 {
     char path[MAX_PATH_LEN];
     
-    //fprintf(stderr, "PTM:%s %d, url:%s, n = %d\n", __FUNCTION__, __LINE__, url, path_len);
     if (path_len >  MAX_PATH_LEN)
         return -1;
     if (url == NULL)
