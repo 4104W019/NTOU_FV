@@ -128,35 +128,39 @@ void FormalVerification::HW3_stress_test_data()
         {"空指標", NULL, -1},
         {"長度為0", "", -1},
         {"最小輸入", "/", 0},
-        {"一般","/index.html", 0},
         {"最大輸入","XXXXXXXXXXXXXXXXXXXXXXXXXX", -1},
+        {"有效值","/index.html", 0},
+        {"無效值","/unkown.html", -1},
         {NULL, NULL, 0}
     }, *p = ps;
 
-    QTest::addColumn<QString>("path");
-    QTest::addColumn<int>("path_len");
-    QTest::addColumn<int>("except");
 
-    for (; p->desc != NULL; p++) {
-        int len = p->path == nullptr ? (int)0:(int)strlen(p->path);
-   	QTest::newRow(p->desc) << p->path << len << p->except;
-   	//QTest::newRow(p->desc)    << p->path   << p->path == nullptr ? (int)1:(int)strlen(p->path) << p->except;
-    }
-   	//QTest::newRow(p->desc)    << p->path   << 1 << p->except;
-    
-}
-void FormalVerification::HW3_stress_test()
-{
-    QFETCH(QString, path);
-    QFETCH(int, path_len);
-    QFETCH(int, except);
+    QTest::addColumn<int>("result");
+    QTest::addColumn<int>("except");
 
     StressTesting http_get;
 
-    printf("\n現在測式: (%-20s) 輸入字串 :(\"%s\") 輸入長度: (%d) , 預期回傳值: (%d)\n", 
-       QTest::currentDataTag(), path.toLocal8Bit().data(), path_len, except);
+    for (; p->desc != nullptr; p++) {
+        int len = p->path == nullptr ? 0:static_cast<int>(strlen(p->path));
+        int ret;
 
-    QCOMPARE(except, http_get.testStressTesting((char *) path.toLocal8Bit().data(), path_len));
+        ret = http_get.testStressTesting((char *)p->path,len);
+
+        QString descriptions = QString("現在測式:(%1), 輸入字串:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
+            .arg(QString(p->desc), +5, QLatin1Char(' '))
+            .arg(p->path==nullptr?"null":p->path)
+            .arg(len)
+            .arg(p->except)
+            .arg(ret);
+        QTest::newRow(descriptions.toStdString().c_str()) << ret << p->except;
+    }
+}
+void FormalVerification::HW3_stress_test()
+{
+    QFETCH(int, result);
+    QFETCH(int, except);
+
+    QCOMPARE(except,result);
 }
 
 QTEST_APPLESS_MAIN(FormalVerification)
