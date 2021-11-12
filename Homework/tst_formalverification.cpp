@@ -11,10 +11,12 @@ class FormalVerification : public QObject
 
 public:
     FormalVerification();
-    ~FormalVerification();
+    //~FormalVerification();
 private slots:
-    void HW3_stress_test_data();
-    void HW3_stress_test();
+//    void HW3_stress_test_data();
+//    void HW3_stress_test();
+    void HW3_test();
+    void HW3_test_data();
 private:
     /**
      * @brief test_case1_data
@@ -41,10 +43,9 @@ FormalVerification::FormalVerification()
 
 }
 
-FormalVerification::~FormalVerification()
-{
-
-}
+//FormalVerification::~FormalVerification()
+//{
+//}
 
 void FormalVerification::test_case1_data()
 {
@@ -118,6 +119,7 @@ void FormalVerification::test_case22()
     QCOMPARE(except, result);
 }
 
+#if 0
 void FormalVerification::HW3_stress_test_data()
 {
     struct patten{
@@ -125,7 +127,7 @@ void FormalVerification::HW3_stress_test_data()
         const char *path;
         int except;
     } ps [] = {
-        {"空指標", NULL, -1},
+        {"空指標", NULL, -2},
         {"長度為0", "", -1},
         {"最小輸入", "/", 0},
         {"一般","/index.html", 0},
@@ -157,6 +159,45 @@ void FormalVerification::HW3_stress_test()
        QTest::currentDataTag(), path.toLocal8Bit().data(), path_len, except);
 
     QCOMPARE(except, http_get.testStressTesting((char *) path.toLocal8Bit().data(), path_len));
+}
+#endif
+
+void FormalVerification::HW3_test_data()
+{
+    QTest::addColumn<int>("result");
+    QTest::addColumn<int>("except");
+
+    struct patten{
+        const char *desc;
+        const char *path;
+        int except;
+    } ps [] = {
+        {"空指標", nullptr, -9},
+        {"長度為0", "", -8},
+        {"最小輸入", "/", 0},
+        {"not_found","/indexx.html", -1},
+        {"最大輸入","XXXXXXXXXXXXXXXXXXXXXXXXXX", -7},
+        {nullptr, nullptr, 0}
+    }, *p = ps;
+
+    StressTesting http_get;
+
+    for (; p->desc != nullptr; p++) {
+        int len = p->path == nullptr ? 0:static_cast<int>(strlen(p->path));
+        QString descriptions = QString("(%1)(input str: %2)(input length: %3)(exception %4)")
+                .arg(QString(p->desc)).arg(p->path==nullptr?"null":p->path).arg(len).arg(p->except);
+
+        QTest::newRow(descriptions.toStdString().c_str()) <<http_get.testStressTesting(p->path,len) << p->except;
+    }
+
+}
+
+void FormalVerification::HW3_test()
+{
+    QFETCH(int, result);
+    QFETCH(int, except);
+
+    QCOMPARE(except,result);
 }
 
 QTEST_APPLESS_MAIN(FormalVerification)

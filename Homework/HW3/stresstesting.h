@@ -6,7 +6,7 @@ class StressTesting
 {
 public:
     StressTesting(){}
-    int testStressTesting(char *url, int length);
+    int testStressTesting(const char *url, int length);
 };
 
 #endif // STRESSTESTING_H

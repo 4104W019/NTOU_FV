@@ -25,7 +25,8 @@ static int http_get(int s, char *path, int path_len)
 	char buf[4096];
 
 	if (path_len == 0)
-		goto not_found;
+        return -8;
+        //goto not_found;
 	//fprintf(stderr, "PTM:%s %d(%s)\n", __FUNCTION__, __LINE__, path);
 	if (strcmp(path, "/") == 0)
 		strcpy(path, "index.html");
@@ -52,14 +53,14 @@ not_found:
  *  Return 0 success, -1 failure.
  */
 #define MAX_PATH_LEN	24
-int StressTesting::testStressTesting(char *url, int path_len)
+int StressTesting::testStressTesting(const char *url, int path_len)
 {
     char path[MAX_PATH_LEN];
     
     if (path_len >  MAX_PATH_LEN)
-        return -1;
-    if (url == NULL)
-        return -1;
+        return -7;
+    if (url == nullptr)
+        return -9;
     strncpy(path, url, MAX_PATH_LEN - 1);
     return http_get(2 /* @stderr */, path, path_len);
 }
