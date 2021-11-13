@@ -5,48 +5,48 @@
 #include "HW2/edgecoverage.h"
 #include "HW3/stresstesting.h"
 
-class FormalVerification : public QObject
+class Testing : public QObject
 {
     Q_OBJECT
 
 public:
-    FormalVerification();
-    ~FormalVerification();
+    Testing();
+    ~Testing();
 private slots:
-    void HW3_stress_test_data();
-    void HW3_stress_test();
+    void HW3_test_data();
+    void HW3_test();
 private:
     /**
      * @brief test_case1_data
      * fill the test pattern for test_case1.
      */
-    void test_case1_data();
+    void HW1_test_data();
 
     /**
      * @brief test_case1
      * The test data has two elements, bool except and result
      * To fetch these values in the actual test
      */
-    void test_case1();
+    void HW1_test();
 //private:
-    void test_case2_data();
-    void test_case2();
-    void test_case22_data();
-    void test_case22();
+    void HW2_test_data();
+    void HW2_test();
+    void HW22_test_data();
+    void HW22_test();
 
 };
 
-FormalVerification::FormalVerification()
+Testing::Testing()
 {
 
 }
 
-FormalVerification::~FormalVerification()
+Testing::~Testing()
 {
 
 }
 
-void FormalVerification::test_case1_data()
+void Testing::HW1_test_data()
 {
     QTest::addColumn<int>("result");
     QTest::addColumn<int>("except");
@@ -62,7 +62,7 @@ void FormalVerification::test_case1_data()
     }
 }
 
-void FormalVerification::test_case1()
+void Testing::HW1_test()
 {
     QFETCH(int, result);
     QFETCH(int, except);
@@ -70,7 +70,7 @@ void FormalVerification::test_case1()
     QCOMPARE(result, except);
 }
 
-void FormalVerification::test_case2_data()
+void Testing::HW2_test_data()
 {
     QTest::addColumn<int>("result");
     QTest::addColumn<int>("except");
@@ -86,7 +86,7 @@ void FormalVerification::test_case2_data()
     }
 }
 
-void FormalVerification::test_case2()
+void Testing::HW2_test()
 {
     QFETCH(int, except);
     QFETCH(int, result);
@@ -94,7 +94,7 @@ void FormalVerification::test_case2()
     QCOMPARE(except, result);
 }
 
-void FormalVerification::test_case22_data()
+void Testing::HW22_test_data()
 {
     QTest::addColumn<int>("result");
     QTest::addColumn<int>("except");
@@ -110,7 +110,7 @@ void FormalVerification::test_case22_data()
     }
 }
 
-void FormalVerification::test_case22()
+void Testing::HW22_test()
 {
     QFETCH(int, except);
     QFETCH(int, result);
@@ -118,7 +118,7 @@ void FormalVerification::test_case22()
     QCOMPARE(except, result);
 }
 
-void FormalVerification::HW3_stress_test_data()
+void Testing::HW3_test_data()
 {
     struct patten{
         const char *desc;
@@ -155,7 +155,7 @@ void FormalVerification::HW3_stress_test_data()
         QTest::newRow(descriptions.toStdString().c_str()) << ret << p->except;
     }
 }
-void FormalVerification::HW3_stress_test()
+void Testing::HW3_test()
 {
     QFETCH(int, result);
     QFETCH(int, except);
@@ -163,6 +163,6 @@ void FormalVerification::HW3_stress_test()
     QCOMPARE(except,result);
 }
 
-QTEST_APPLESS_MAIN(FormalVerification)
+QTEST_APPLESS_MAIN(Testing)
 
 #include "tst_formalverification.moc"
