@@ -13,9 +13,15 @@ public:
     Testing();
     ~Testing();
 private slots:
+    void HW5_test_data();
+    void HW5_test();
+private:
     void HW3_test_data();
     void HW3_test();
-private:
+        void HW2_test_data();
+        void HW2_test();
+        void HW22_test_data();
+        void HW22_test();
     /**
      * @brief test_case1_data
      * fill the test pattern for test_case1.
@@ -28,11 +34,7 @@ private:
      * To fetch these values in the actual test
      */
     void HW1_test();
-//private:
-    void HW2_test_data();
-    void HW2_test();
-    void HW22_test_data();
-    void HW22_test();
+
 
 };
 
@@ -44,6 +46,94 @@ Testing::Testing()
 Testing::~Testing()
 {
 
+}
+#include "HW5/inputdomain.h"
+void Testing::HW5_test_data()
+{
+    QTest::addColumn<int32_t>("result");
+    QTest::addColumn<int32_t>("except");
+
+    InputDomain inputDomain;
+
+    int32_t categorization_excepts[6]={
+        InputDomain::LANG_PointOutOfRange,
+        InputDomain::MATH_Failed,
+        InputDomain::SubjectOutOfRange,
+        InputDomain::LANG_Pass,
+        InputDomain::MATH_Pass,
+        InputDomain::SubjectOutOfRange};
+
+    int32_t subject[3] ={InputDomain::SUBJECT_LANG,InputDomain::SUBJECT_MATH,InputDomain::SUBJECT_MAX};
+    int32_t points[6] ={-1,0,69,70,100,101};
+
+
+    ///5-1)	categorization (每個類別)
+    for(int32_t i=0; i<6;i++){
+        int32_t ret = inputDomain.domainOfExams(subject[i%3],points[i]);
+
+        QString description = QString("5-1)Categorization, input(%1,%2), expect(%3) actual output(%4)")
+               .arg(subject[i%3])
+               .arg(points[i])
+               .arg(categorization_excepts[i])
+               .arg(ret);
+
+        QTest::newRow(description.toStdString().c_str())
+                << ret
+                << categorization_excepts[i];
+    }
+
+    ///5-2)	Combinatorial (各種類別的排列組合)
+
+    int32_t combinatorial_excepts[3][6]={
+        {
+            InputDomain::LANG_PointOutOfRange,
+            InputDomain::LANG_Failed,
+            InputDomain::LANG_Failed,
+            InputDomain::LANG_Pass,
+            InputDomain::LANG_Pass,
+            InputDomain::LANG_PointOutOfRange
+        },
+        {
+            InputDomain::MATH_PointOutOfRange,
+            InputDomain::MATH_Failed,
+            InputDomain::MATH_Failed,
+            InputDomain::MATH_Pass,
+            InputDomain::MATH_Pass,
+            InputDomain::MATH_PointOutOfRange
+        },
+        {
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange
+        }
+       };
+
+    for(int32_t i=0; i<3;i++){
+        for(int32_t j=0; j<6;j++){
+            int32_t ret = inputDomain.domainOfExams(subject[i],points[j]);
+
+            QString description = QString("5-2)Combinatorial, input(%1,%2), expect(%3) actual output(%4)")
+                    .arg(subject[i])
+                    .arg(points[j])
+                    .arg(combinatorial_excepts[i][j])
+                    .arg(ret);
+
+                QTest::newRow(description.toStdString().c_str())
+                        << ret
+                        << combinatorial_excepts[i][j];
+        }
+    }
+}
+
+void Testing::HW5_test()
+{
+    QFETCH(int32_t, except);
+    QFETCH(int32_t, result);
+
+    QCOMPARE(except, result);
 }
 
 void Testing::HW1_test_data()
