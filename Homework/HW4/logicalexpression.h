@@ -6,6 +6,7 @@ class LogicalExpression
 {
 public:
     LogicalExpression();
+    int testLogicalExpression(float inputNumber);
 };
 
 #endif // LOGICALEXPRESSION_H

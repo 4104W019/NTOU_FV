@@ -4,6 +4,7 @@
 #include "HW1/linecoverage.h"
 #include "HW2/edgecoverage.h"
 #include "HW3/stresstesting.h"
+#include "HW4/logicalexpression.h"
 
 class Testing : public QObject
 {
@@ -12,7 +13,7 @@ class Testing : public QObject
 public:
     Testing();
     ~Testing();
-private slots:
+private:
     void HW3_test_data();
     void HW3_test();
 private:
@@ -33,7 +34,8 @@ private:
     void HW2_test();
     void HW22_test_data();
     void HW22_test();
-
+    void HW4_test_data();
+    void HW4_test();
 };
 
 Testing::Testing()
@@ -161,6 +163,27 @@ void Testing::HW3_test()
     QFETCH(int, except);
 
     QCOMPARE(except,result);
+}
+void Testing::HW4_test_data()
+{
+    QTest::addColumn<float>("result");
+    QTest::addColumn<int>("except");
+    LogicalExpression logicalExpression;
+    float test[4] = {3,-1,11,1.5};
+    int excepts[4] ={6,-1,-1,-1};
+
+    for(int i=0; i<4; ++i){
+        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+                << logicalExpression.testLogicalExpression(test[i])
+                << excepts[i];
+    }
+}
+void Testing::HW4_test()
+{
+    QFETCH(float, except);
+    QFETCH(int, result);
+
+    QCOMPARE(except, result);
 }
 
 QTEST_APPLESS_MAIN(Testing)

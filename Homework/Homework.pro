@@ -8,7 +8,8 @@ TEMPLATE = app
 
 QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
 QMAKE_LFLAGS += -fprofile-arcs -ftest-coverage
-LIBS += -lgcov
+QMAKE_POST_LINK = rm -f "*.gcda"
+#LIBS += -lgcov
 
 SOURCES +=  tst_formalverification.cpp \
     HW1/linecoverage.cpp \
