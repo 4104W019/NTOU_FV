@@ -19,6 +19,8 @@ class LogicalExpression
 {
 public:
     LogicalExpression(){}
+    int testLogicalExpression(int* Amounts, int amountSize, bool isBlackFriday,
+                                             bool isChristmas);
 };
 
 #endif // LOGICALEXPRESSION_H
