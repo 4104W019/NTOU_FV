@@ -222,7 +222,7 @@ PASS   : Testing::HW4_test(HW 4-3 test_case_08 -> >= amount_to_get_discount: tru
 ```
 
 
-### Clause Coverage
+### Combinatorial Coverage
 * test case 1 ( T T T )
     >1. Input values: amounts: [100, 500, 600], is_black_friday: true, is_cristmas: true
     >2. Expected result: "780"
