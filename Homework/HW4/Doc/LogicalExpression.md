@@ -138,7 +138,7 @@ PASS   : Testing::HW4_test(HW 4-2 test_case_02 -> >= amount_to_get_discount: fal
     >4. Logical Conditions: `total_amount >= amount_to_get_discount: false, isBlackFriday: false, isChristmas: false`
     
     
-    ### Test-Case HW 4-3
+### Test-Case HW 4-3
 ```c++
 // HW 4-3 test_case
 int data_hw43_true[3] = { 100, 500, 600 };
