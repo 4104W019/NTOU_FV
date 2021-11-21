@@ -321,7 +321,7 @@ void Testing::HW4_test_data()
                   << discounted_amount;
 
 
-    // HW 4-3 test_case_01
+    // HW 4-3 test_case
     int data_hw43_true[3] = { 100, 500, 600 };
     int *amounts_true = data_hw43_true;
     int data_hw43_false[3] = { 100, 200, 300 };
@@ -335,7 +335,7 @@ void Testing::HW4_test_data()
                   << LogicalExpression.testLogicalExpression(amounts_true, amount_size,
                                                              is_black_friday, is_christmas)
                   << discounted_amount;
-    QString descriptions_hw43_test_case_02 = QString("HW 4-3 test_case_02 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: true");
+    QString descriptions_hw43_test_case_02 = QString("HW 4-3 test_case_02 -> >= amount_to_get_discount: false, isBlackFriday: true, isChristmas: true");
     discounted_amount = 540;
     QTest::newRow(descriptions_hw43_test_case_02.toStdString().c_str())
                   << LogicalExpression.testLogicalExpression(amounts_false, amount_size,
@@ -350,7 +350,7 @@ void Testing::HW4_test_data()
                   << LogicalExpression.testLogicalExpression(amounts_true, amount_size,
                                                              is_black_friday, is_christmas)
                   << discounted_amount;
-    QString descriptions_hw43_test_case_04 = QString("HW 4-3 test_case_04 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: false");
+    QString descriptions_hw43_test_case_04 = QString("HW 4-3 test_case_04 -> >= amount_to_get_discount: false, isBlackFriday: true, isChristmas: false");
     discounted_amount = 540;
     QTest::newRow(descriptions_hw43_test_case_04.toStdString().c_str())
                   << LogicalExpression.testLogicalExpression(amounts_false, amount_size,
@@ -365,7 +365,7 @@ void Testing::HW4_test_data()
                   << LogicalExpression.testLogicalExpression(amounts_true, amount_size,
                                                              is_black_friday, is_christmas)
                   << discounted_amount;
-    QString descriptions_hw43_test_case_06 = QString("HW 4-3 test_case_06 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: true");
+    QString descriptions_hw43_test_case_06 = QString("HW 4-3 test_case_06 -> >= amount_to_get_discount: false, isBlackFriday: false, isChristmas: true");
     discounted_amount = 540;
     QTest::newRow(descriptions_hw43_test_case_06.toStdString().c_str())
                   << LogicalExpression.testLogicalExpression(amounts_false, amount_size,
@@ -380,7 +380,7 @@ void Testing::HW4_test_data()
                   << LogicalExpression.testLogicalExpression(amounts_true, amount_size,
                                                              is_black_friday, is_christmas)
                   << discounted_amount;
-    QString descriptions_hw43_test_case_08 = QString("HW 4-3 test_case_08 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: false");
+    QString descriptions_hw43_test_case_08 = QString("HW 4-3 test_case_08 -> >= amount_to_get_discount: false, isBlackFriday: false, isChristmas: false");
     discounted_amount = 540;
     QTest::newRow(descriptions_hw43_test_case_08.toStdString().c_str())
                   << LogicalExpression.testLogicalExpression(amounts_false, amount_size,
