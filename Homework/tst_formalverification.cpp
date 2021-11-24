@@ -14,18 +14,23 @@ public:
     Testing();
     ~Testing();
 private slots:
+
     void HW4_test_data();
     void HW4_test();
+
+    void HW5_system_data();
+    void HW5_system();
 private:
+
+    void HW5_test_data();
+    void HW5_test();
+
     void HW3_test_data();
     void HW3_test();
     void HW2_test_data();
     void HW2_test();
     void HW22_test_data();
     void HW22_test();
-
-    void HW5_test_data();
-    void HW5_test();
 
     /**
      * @brief test_case1_data
@@ -53,6 +58,110 @@ Testing::~Testing()
 
 }
 #include "HW5/inputdomain.h"
+
+void Testing::HW5_system_data()
+{
+    QTest::addColumn<uint32_t>("result");
+    QTest::addColumn<uint32_t>("except");
+
+    InputDomain inputDomain;
+
+    uint32_t categorization_excepts[7]={
+        InputDomain::LANG_MISSED_ALL,
+        InputDomain::MATH_MISSED_TWO,
+        InputDomain::SubjectOutOfRange,
+        InputDomain::LANG_Failed,
+        InputDomain::MATH_Pass,
+        InputDomain::SubjectOutOfRange,
+        InputDomain::LANG_OVER_THREE
+    };
+
+    //int32_t subject[3] ={InputDomain::SUBJECT_LANG,InputDomain::SUBJECT_MATH,InputDomain::SUBJECT_MAX};
+
+    QList<uint8_t> points[7];
+    points[0].clear();  // lang
+    points[1]={10};  //math
+    points[2]={10,20}; // max
+    points[3]={10,20,30}; //lang
+    points[4]={80,90,100}; // math
+    points[5]={90,100,110}; // max
+    points[6]={1,2,3,4,5}; // lang
+
+#if 1
+    ///5-1)	categorization (每個類別)
+    for(int32_t i=0; i<7;i++){
+        uint32_t ret = inputDomain.finalGrade(i%3,points[i]);
+
+        QString description = QString("5-1)%1 Categorization, subject(%2), output(%3) expect(%4)")
+                .arg(i)
+               .arg(i%3)
+               .arg(categorization_excepts[i])
+               .arg(ret);
+
+        QTest::newRow(description.toStdString().c_str())
+                << ret
+                << categorization_excepts[i];
+    }
+#endif
+    ///5-2)	Combinatorial (各種類別的排列組合)
+#if 1
+    uint32_t combinatorial_excepts[3][7]={
+        {
+            InputDomain::LANG_MISSED_ALL,
+            InputDomain::LANG_MISSED_TWO,
+            InputDomain::LANG_MISSED_ONE,
+            InputDomain::LANG_Failed,
+            InputDomain::LANG_Pass,
+            InputDomain::LANG_PointOutOfRange,
+            InputDomain::LANG_OVER_THREE
+        },
+        {
+            InputDomain::MATH_MISSED_ALL,
+            InputDomain::MATH_MISSED_TWO,
+            InputDomain::MATH_MISSED_ONE,
+            InputDomain::MATH_Failed,
+            InputDomain::MATH_Pass,
+            InputDomain::MATH_PointOutOfRange,
+            InputDomain::MATH_OVER_THREE
+        },
+        {
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange,
+            InputDomain::SubjectOutOfRange
+        }
+       };
+
+    for(int32_t i=0; i<3;i++){
+        for(int32_t j=0; j<7;j++){
+            uint32_t ret = inputDomain.finalGrade(i,points[j]);
+
+            QString description = QString("5-2)Combinatorial, subject(%1), output(%2)  expect(%3)")
+                    .arg(i)
+                    .arg(ret)
+                    .arg(combinatorial_excepts[i][j]);
+
+                QTest::newRow(description.toStdString().c_str())
+                        << ret
+                        << combinatorial_excepts[i][j];
+        }
+    }
+#endif
+}
+
+void Testing::HW5_system()
+{
+    QFETCH(uint32_t, except);
+    QFETCH(uint32_t, result);
+
+    QCOMPARE(except, result);
+}
+
+
+
 void Testing::HW5_test_data()
 {
     QTest::addColumn<int32_t>("result");
@@ -235,20 +344,20 @@ void Testing::HW3_test_data()
 
     StressTesting http_get;
 
-    for (; p->desc != nullptr; p++) {
-        int len = p->path == nullptr ? 0:static_cast<int>(strlen(p->path));
-        int ret;
+//    for (; p->desc != nullptr; p++) {
+//        int len = p->path == nullptr ? 0:static_cast<int>(strlen(p->path));
+//        int ret;
 
-        ret = http_get.testStressTesting((char *)p->path,len);
+//        ret = http_get.testStressTesting((char *)p->path,len);
 
-        QString descriptions = QString("現在測式:(%1), 輸入字串:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
-            .arg(QString(p->desc), +5, QLatin1Char(' '))
-            .arg(p->path==nullptr?"null":p->path)
-            .arg(len)
-            .arg(p->except)
-            .arg(ret);
-        QTest::newRow(descriptions.toStdString().c_str()) << ret << p->except;
-    }
+//        QString descriptions = QString("現在測式:(%1), 輸入字串:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
+//            .arg(QString(p->desc), +5, QLatin1Char(' '))
+//            .arg(p->path==nullptr?"null":p->path)
+//            .arg(len)
+//            .arg(p->except)
+//            .arg(ret);
+//        QTest::newRow(descriptions.toStdString().c_str()) << ret << p->except;
+//    }
 }
 void Testing::HW3_test()
 {

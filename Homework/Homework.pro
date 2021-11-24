@@ -16,6 +16,7 @@ SOURCES +=  tst_formalverification.cpp \
     HW2/edgepaircoverage.cpp \
     HW3/stresstesting.cpp \
     HW4/logicalexpression.cpp \
+    HW5/inputDomianSystemLevel.cpp \
     HW5/inputdomain.cpp
 
 HEADERS += \
