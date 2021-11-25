@@ -15,12 +15,12 @@ public:
     ~Testing();
 private slots:
 
-    void HW4_test_data();
-    void HW4_test();
-
     void HW5_system_data();
     void HW5_system();
 private:
+
+    void HW4_test_data();
+    void HW4_test();
 
     void HW5_test_data();
     void HW5_test();
@@ -93,7 +93,7 @@ void Testing::HW5_system_data()
         uint32_t ret = inputDomain.finalGrade(i%3,points[i]);
 
         QString description = QString("5-1)%1 Categorization, subject(%2), output(%3) expect(%4)")
-                .arg(i)
+                .arg(i+1)
                .arg(i%3)
                .arg(categorization_excepts[i])
                .arg(ret);
@@ -139,7 +139,8 @@ void Testing::HW5_system_data()
         for(int32_t j=0; j<7;j++){
             uint32_t ret = inputDomain.finalGrade(i,points[j]);
 
-            QString description = QString("5-2)Combinatorial, subject(%1), output(%2)  expect(%3)")
+            QString description = QString("5-2)%1 Combinatorial, subject(%2), output(%3)  expect(%4)")
+                    .arg(i*7+j+1)
                     .arg(i)
                     .arg(ret)
                     .arg(combinatorial_excepts[i][j]);
