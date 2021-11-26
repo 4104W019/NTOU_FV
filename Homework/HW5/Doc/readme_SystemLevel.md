@@ -293,7 +293,7 @@ PASS   : Testing::HW5_system(5-2)21 Combinatorial, subject(2), output(14)  expec
 |Input values|(SUBJECT_MATH, [80,90,100])|
 |Expected result|5|
 |Test program's result|5|
-|Criteria report| 數學科目及格(MATH_Pass)|
+|Domain Characteristics| 數學科目及格(MATH_Pass)|
   
 #### **Test-case 6: (SUBJECT_MAX, [90,100,110])**
 |Items|Description|
@@ -301,15 +301,15 @@ PASS   : Testing::HW5_system(5-2)21 Combinatorial, subject(2), output(14)  expec
 |Input values|(SUBJECT_MAX, [90,100,110])|
 |Expected result|14|
 |Test program's result|14|
-|Criteria report| 無效科目(SubjectOutOfRange)|
+|Domain Characteristics| 無效科目(SubjectOutOfRange)|
 
-#### **Test-case 7: (SUBJECT_MAX, [1,2,3,4,5])**
+#### **Test-case 7: (SUBJECT_LANG, [1,2,3,4,5])**
 |Items|Description|
 |----|----|
 |Input values|(subject, point)=(SUBJECT_LANG, [1,2,3,4,5])|
 |Expected result|9|
 |Test program's result|9|
-|Criteria report| 語言科目輸入超過(LANG_OVER_THREE)|
+|Domain Characteristics| 語言科目輸入超過(LANG_OVER_THREE)|
 ---
 ### 3-2.Combinatorial (各種類別的排列組合)
 
