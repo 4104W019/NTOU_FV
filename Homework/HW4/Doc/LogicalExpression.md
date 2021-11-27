@@ -92,12 +92,12 @@ QTest::newRow(descriptions_test_case_02.toStdString().c_str())
 
 ### Clause Coverage
 * test case 1
-    >1. Input values: amounts: [100, 500, 600], is_black_friday: false, is_cristmas: true
+    >1. Input values: amounts: [100, 500, 600], is_black_friday: true, is_cristmas: true
     >2. Expected result: "780"
     >3. Test program's result: "780"
-    >4. Logical Conditions: `total_amount >= amount_to_get_discount: false, isBlackFriday: false, isChristmas: false`
+    >4. Logical Conditions: `total_amount >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: true`
 * test case 2
-    >1. Input values: amounts: [100, 500, 600], is_black_friday: false, is_cristmas: false
+    >1. Input values: amounts: [100, 200, 300], is_black_friday: false, is_cristmas: false
     >2. Expected result: "540"
     >3. Test program's result: "540"
     >4. Logical Conditions: `total_amount >= amount_to_get_discount: false, isBlackFriday: false, isChristmas: false`
