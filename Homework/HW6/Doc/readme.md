@@ -88,41 +88,40 @@ int Mutations::mutProgram_6(int inputNumber)
 
 ## 2. Result of the testing.
 > ********* Start testing of Testing *********
-Config: Using QtTest library 6.2.0, Qt 6.2.0 (arm64-little_endian-lp64 shared (dynamic) release build; by Clang 12.0.5 (clang-1205.0.22.11) (Apple)), macos 11.6
-PASS   : Testing::initTestCase()
-PASS   : Testing::HW6_test(-1)
-PASS   : Testing::HW6_test(0)
-PASS   : Testing::HW6_test(1)
-PASS   : Testing::HW6_test(4)
-PASS   : Testing::HW6_test(11)
-FAIL!  : Testing::HW6_test(1) Compared values are not the same
-   Actual   (except): 1
-   Expected (result): 11
-   Loc: [../Homework/tst_formalverification.cpp(217)]
-FAIL!  : Testing::HW6_test(0) Compared values are not the same
-   Actual   (except): -1
-   Expected (result): 0
-   Loc: [../Homework/tst_formalverification.cpp(217)]
-FAIL!  : Testing::HW6_test(4) Compared values are not the same
-   Actual   (except): 10
-   Expected (result): 0
-   Loc: [../Homework/tst_formalverification.cpp(217)]
-FAIL!  : Testing::HW6_test(4) Compared values are not the same
-   Actual   (except): 10
-   Expected (result): 16
-   Loc: [../Homework/tst_formalverification.cpp(217)]
-FAIL!  : Testing::HW6_test(4) Compared values are not the same
-   Actual   (except): 10
-   Expected (result): 4
-   Loc: [../Homework/tst_formalverification.cpp(217)]
-FAIL!  : Testing::HW6_test(0) Compared values are not the same
-   Actual   (except): -1
-   Expected (result): 0
-   Loc: [../Homework/tst_formalverification.cpp(217)]
-PASS   : Testing::cleanupTestCase()
-Totals: 7 passed, 6 failed, 0 skipped, 0 blacklisted, 1ms
-********* Finished testing of Testing *********
-
+> Config: Using QtTest library 6.2.0, Qt 6.2.0 (arm64-little_endian-lp64 shared (dynamic) release build; by Clang 12.0.5 (clang-1205.0.22.11) (Apple)), macos 11.6
+> PASS   : Testing::initTestCase()
+> PASS   : Testing::HW6_test(-1)
+> PASS   : Testing::HW6_test(0)
+> PASS   : Testing::HW6_test(1)
+> PASS   : Testing::HW6_test(4)
+> PASS   : Testing::HW6_test(11)
+> FAIL!  : Testing::HW6_test(1) Compared values are not the same
+>    Actual   (except): 1
+>    Expected (result): 11
+>    Loc: [../Homework/tst_formalverification.cpp(217)]
+> FAIL!  : Testing::HW6_test(0) Compared values are not the same
+>    Actual   (except): -1
+>    Expected (result): 0
+>    Loc: [../Homework/tst_formalverification.cpp(217)]
+> FAIL!  : Testing::HW6_test(4) Compared values are not the same
+>    Actual   (except): 10
+>    Expected (result): 0
+>    Loc: [../Homework/tst_formalverification.cpp(217)]
+> FAIL!  : Testing::HW6_test(4) Compared values are not the same
+>    Actual   (except): 10
+>    Expected (result): 16
+>    Loc: [../Homework/tst_formalverification.cpp(217)]
+> FAIL!  : Testing::HW6_test(4) Compared values are not the same
+>    Actual   (except): 10
+>    Expected (result): 4
+>    Loc: [../Homework/tst_formalverification.cpp(217)]
+> FAIL!  : Testing::HW6_test(0) Compared values are not the same
+>    Actual   (except): -1
+>    Expected (result): 0
+>    Loc: [../Homework/tst_formalverification.cpp(217)]
+> PASS   : Testing::cleanupTestCase()
+> Totals: 7 passed, 6 failed, 0 skipped, 0 blacklisted, 1ms
+> ********* Finished testing of Testing *********
 ---
 
 ## 3. Report of Test cases.
@@ -158,6 +157,3 @@ Totals: 7 passed, 6 failed, 0 skipped, 0 blacklisted, 1ms
 4. test mutant program's result: 0
 
 ---
-
-## 4. Coverage Report
-
