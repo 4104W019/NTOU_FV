@@ -197,17 +197,17 @@ void Testing::HW6_test_data()
     Mutations mutation;
     int test[5] = {-1,0,1,4,11};
     int excepts[5] ={-1,-1,1,10,-1};
-    for(int i=0; i<5; ++i){
-        QTest::newRow(QString::number(test[i]).toStdString().c_str())
-                << mutation.orgProgram(test[i])
-                << excepts[i];
-    }
-    QTest::newRow(QString::number(test[2]).toStdString().c_str()) << mutation.mutProgram_1(test[2]) << excepts[2];
-    QTest::newRow(QString::number(test[1]).toStdString().c_str()) << mutation.mutProgram_2(test[1]) << excepts[1];
-    QTest::newRow(QString::number(test[3]).toStdString().c_str()) << mutation.mutProgram_3(test[3]) << excepts[3];
-    QTest::newRow(QString::number(test[3]).toStdString().c_str()) << mutation.mutProgram_4(test[3]) << excepts[3];
-    QTest::newRow(QString::number(test[3]).toStdString().c_str()) << mutation.mutProgram_5(test[3]) << excepts[3];
-    QTest::newRow(QString::number(test[1]).toStdString().c_str()) << mutation.mutProgram_6(test[1]) << excepts[1];
+//    for(int i=0; i<5; ++i){
+//        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+//                << mutation.orgProgram(test[i])
+//                << excepts[i];
+//    }
+        QTest::newRow(QString("mutProgram_1").toStdString().c_str()) << mutation.mutProgram_1(test[2]) << excepts[2];
+        QTest::newRow(QString("mutProgram_2").toStdString().c_str()) << mutation.mutProgram_2(test[1]) << excepts[1];
+        QTest::newRow(QString("mutProgram_3").toStdString().c_str()) << mutation.mutProgram_3(test[3]) << excepts[3];
+        QTest::newRow(QString("mutProgram_4").toStdString().c_str()) << mutation.mutProgram_4(test[3]) << excepts[3];
+        QTest::newRow(QString("mutProgram_5").toStdString().c_str()) << mutation.mutProgram_5(test[3]) << excepts[3];
+        QTest::newRow(QString("mutProgram_6").toStdString().c_str()) << mutation.mutProgram_6(test[1]) << excepts[1];
 }
 void Testing::HW6_test()
 {
