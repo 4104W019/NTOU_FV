@@ -14,9 +14,11 @@ SOURCES +=  tst_formalverification.cpp \
     HW1/linecoverage.cpp \
     HW2/edgecoverage.cpp \
     HW2/edgepaircoverage.cpp \
-    HW3/stresstesting.cpp
+    HW3/stresstesting.cpp \
+    HW7/inputbox_phone_number.cpp
 
 HEADERS += \
     HW1/linecoverage.h \
     HW2/edgecoverage.h \
-    HW3/stresstesting.h
+    HW3/stresstesting.h \
+    HW7/inputbox_phone_number.h

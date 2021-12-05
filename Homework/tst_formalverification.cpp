@@ -4,7 +4,8 @@
 #include "HW1/linecoverage.h"
 #include "HW2/edgecoverage.h"
 #include "HW3/stresstesting.h"
-
+#include "HW7/inputbox_phone_number.h"
+#include<QDebug>
 class FormalVerification : public QObject
 {
     Q_OBJECT
@@ -120,6 +121,8 @@ void FormalVerification::test_case22()
 
 void FormalVerification::HW3_stress_test_data()
 {
+
+#if 0
     struct patten{
         const char *desc;
         const char *path;
@@ -154,13 +157,65 @@ void FormalVerification::HW3_stress_test_data()
             .arg(ret);
         QTest::newRow(descriptions.toStdString().c_str()) << ret << p->except;
     }
+#endif
+
+    struct patten{
+        const char *desc;
+        QString phone_no;
+        int except;
+    } ps [] = {
+        {"測式 1 長度", "1234567", -1},
+        {"測式 1 長度", "", -1},
+        {"測式 1 長度", "+886918123456", 0},
+        {"測式 1 長度", "+8869281234567", -1},
+        {"第一個字元", "+0212345678", 0},
+        {"第一個字元", "-0212345678", -1},
+        {"第一個字元", "0212345678", -1},
+        {"合法字元", "+0212345678", 0},
+        {"合法字元", "+02123456X8", -1},
+        {NULL, NULL, 0}
+    }, *p = ps;
+
+
+    QTest::addColumn<int>("result");
+    QTest::addColumn<int>("except");
+
+    int ret;
+    InputBox_phone_number phone_number;
+#if 0
+    ret = phone_number.__validate_phone_number("68228");
+    qDebug() << "outout is: " << ret;
+    ret = phone_number.__validate_phone_number("0918868228");
+    qDebug() << "outout is: " << ret;
+    ret = phone_number.__validate_phone_number("+0918868228");
+    qDebug() << "outout is: " << ret;
+#endif
+    for (; p->desc != nullptr; p++) {
+
+        ret = phone_number.__validate_phone_number(p->phone_no);
+
+        QString descriptions = QString("現在測式:(%1), 輸入電話:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
+            .arg(QString(p->desc), +5, QLatin1Char(' '))
+            .arg(p->phone_no)
+            .arg(p->phone_no.length())
+            .arg(p->except)
+            .arg(ret);
+        qDebug() << descriptions;
+
+        qDebug() << descriptions.toStdString().c_str();
+        QTest::newRow(descriptions.toStdString().c_str()) << ret << p->except;
+    }
+
+
 }
 void FormalVerification::HW3_stress_test()
 {
+#if 1
     QFETCH(int, result);
     QFETCH(int, except);
 
     QCOMPARE(except,result);
+#endif
 }
 
 QTEST_APPLESS_MAIN(FormalVerification)
