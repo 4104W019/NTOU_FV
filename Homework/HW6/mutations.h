@@ -16,6 +16,8 @@ public:
     int mutProgram_4(int inputNumber);
     int mutProgram_5(int inputNumber);
     int mutProgram_6(int inputNumber);
+    int mutProgram_7(int inputNumber);
+    int mutProgram_8(int inputNumber);
 };
 
 #endif // MUTATIONS_H

@@ -176,11 +176,11 @@ void Testing::HW4_test_data()
     float test[4] = {3,-1,11,1.5};
     int excepts[4] ={6,-1,-1,-1};
 
-    for(int i=0; i<4; ++i){
-        QTest::newRow(QString::number(test[i]).toStdString().c_str())
-                << logicalExpression.testLogicalExpression(test[i])
-                << excepts[i];
-    }
+//    for(int i=0; i<4; ++i){
+//        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+//                << logicalExpression.testLogicalExpression(test[i])
+//                << excepts[i];
+//    }
 }
 void Testing::HW4_test()
 {
@@ -207,7 +207,9 @@ void Testing::HW6_test_data()
         QTest::newRow(QString("mutProgram_3").toStdString().c_str()) << mutation.mutProgram_3(test[3]) << excepts[3];
         QTest::newRow(QString("mutProgram_4").toStdString().c_str()) << mutation.mutProgram_4(test[3]) << excepts[3];
         QTest::newRow(QString("mutProgram_5").toStdString().c_str()) << mutation.mutProgram_5(test[3]) << excepts[3];
-        QTest::newRow(QString("mutProgram_6").toStdString().c_str()) << mutation.mutProgram_6(test[1]) << excepts[1];
+        QTest::newRow(QString("mutProgram_6").toStdString().c_str()) << mutation.mutProgram_6(test[3]) << excepts[3];
+        QTest::newRow(QString("mutProgram_7").toStdString().c_str()) << mutation.mutProgram_7(test[3]) << excepts[3];
+        QTest::newRow(QString("mutProgram_8").toStdString().c_str()) << mutation.mutProgram_8(test[1]) << excepts[1];
 }
 void Testing::HW6_test()
 {

@@ -9,13 +9,14 @@ int Mutations::orgProgram(int inputNumber)
 {
     int result = 0; //1
     if(1<= inputNumber and inputNumber <= 10){  //2
-        for(int i=1; i<=inputNumber; ++i){  //3
-            result +=i; //4
+        for(int i=1; i<=inputNumber; ++i){  //3,4,5
+            result +=i; //6
         }
-        return result;  //5
+        return result;  //7
     }
-    return -1;  //6
+    return -1;  //8
 }
+
 int Mutations::mutProgram_1(int inputNumber)
 {
     int result = 10;    //#1    0 -> 10
@@ -49,25 +50,25 @@ int Mutations::mutProgram_3(int inputNumber)
     }
     return -1;
 }
-int Mutations::mutProgram_4(int inputNumber)
+int Mutations::mutProgram_4(int inputNumber)    //inputNumber = 4
 {
     int result = 0;
     if(1<= inputNumber and inputNumber <= 10){
-        for(int i=1; i<=inputNumber; ++i){
-            result +=inputNumber; //#4    i -> inputNumber
+        for(int i=1; i<inputNumber; ++i){  //#4   <= -> <
+            result +=i;
         }
-        return result;
+        return result;  //1+2+3
     }
     return -1;
 }
 int Mutations::mutProgram_5(int inputNumber)
 {
     int result = 0;
-    if(1<= inputNumber and inputNumber <= 10){
-        for(int i=1; i<=inputNumber; ++i){
+    if(1<= inputNumber and inputNumber <= 10){  //inputNumber = 4
+        for(int i=1; i<=inputNumber; i=i+2){  //#5    ++i -> i=i+2
             result +=i;
         }
-        return inputNumber;  //#5    result -> inputNumber
+        return result;  //
     }
     return -1;
 }
@@ -76,11 +77,33 @@ int Mutations::mutProgram_6(int inputNumber)
     int result = 0;
     if(1<= inputNumber and inputNumber <= 10){
         for(int i=1; i<=inputNumber; ++i){
+            result +=inputNumber; //#6    i -> inputNumber
+        }
+        return result;
+    }
+    return -1;
+}
+int Mutations::mutProgram_7(int inputNumber)
+{
+    int result = 0;
+    if(1<= inputNumber and inputNumber <= 10){
+        for(int i=1; i<=inputNumber; ++i){
+            result +=i;
+        }
+        return inputNumber;  //#7    result -> inputNumber
+    }
+    return -1;
+}
+int Mutations::mutProgram_8(int inputNumber)
+{
+    int result = 0;
+    if(1<= inputNumber and inputNumber <= 10){
+        for(int i=1; i<=inputNumber; ++i){
             result +=i;
         }
         return result;
     }
-    return inputNumber;  //#6 -1 -> inputNumber
+    return inputNumber;  //#8 -1 -> inputNumber
 }
 ```
 
@@ -90,33 +113,39 @@ int Mutations::mutProgram_6(int inputNumber)
 ```
 ********* Start testing of Testing *********
 Config: Using QtTest library 6.2.0, Qt 6.2.0 (arm64-little_endian-lp64 shared (dynamic) release build; by Clang 12.0.5 (clang-1205.0.22.11) (Apple)), macos 11.6
-PASS   : Testing::initTestCase()
 FAIL!  : Testing::HW6_test(mutProgram_1) Compared values are not the same
    Actual   (except): 1
    Expected (result): 11
-   Loc: [../Homework/tst_formalverification.cpp(217)]
+   Loc: [../Homework/tst_formalverification.cpp(219)]
 FAIL!  : Testing::HW6_test(mutProgram_2) Compared values are not the same
    Actual   (except): -1
    Expected (result): 0
-   Loc: [../Homework/tst_formalverification.cpp(217)]
+   Loc: [../Homework/tst_formalverification.cpp(219)]
 FAIL!  : Testing::HW6_test(mutProgram_3) Compared values are not the same
    Actual   (except): 10
    Expected (result): 0
-   Loc: [../Homework/tst_formalverification.cpp(217)]
+   Loc: [../Homework/tst_formalverification.cpp(219)]
 FAIL!  : Testing::HW6_test(mutProgram_4) Compared values are not the same
    Actual   (except): 10
-   Expected (result): 16
-   Loc: [../Homework/tst_formalverification.cpp(217)]
+   Expected (result): 6
+   Loc: [../Homework/tst_formalverification.cpp(219)]
 FAIL!  : Testing::HW6_test(mutProgram_5) Compared values are not the same
    Actual   (except): 10
    Expected (result): 4
-   Loc: [../Homework/tst_formalverification.cpp(217)]
+   Loc: [../Homework/tst_formalverification.cpp(219)]
 FAIL!  : Testing::HW6_test(mutProgram_6) Compared values are not the same
+   Actual   (except): 10
+   Expected (result): 16
+   Loc: [../Homework/tst_formalverification.cpp(219)]
+FAIL!  : Testing::HW6_test(mutProgram_7) Compared values are not the same
+   Actual   (except): 10
+   Expected (result): 4
+   Loc: [../Homework/tst_formalverification.cpp(219)]
+FAIL!  : Testing::HW6_test(mutProgram_8) Compared values are not the same
    Actual   (except): -1
    Expected (result): 0
-   Loc: [../Homework/tst_formalverification.cpp(217)]
-PASS   : Testing::cleanupTestCase()
-Totals: 2 passed, 6 failed, 0 skipped, 0 blacklisted, 1ms
+   Loc: [../Homework/tst_formalverification.cpp(219)]
+Totals: 0 passed, 8 failed, 0 skipped, 0 blacklisted, 0ms
 ********* Finished testing of Testing *********
 ```
  ![TestReport](pics/TestReport.png)
@@ -147,8 +176,18 @@ Totals: 2 passed, 6 failed, 0 skipped, 0 blacklisted, 1ms
 1. Input values: inputNumber 4
 2. expected result: 10
 3. test origiol program-s result: 10
-4. test mutant program's result: 4
+4. test mutant program's result: 6
 #### **Ｍutation Test-case 6:**
+1. Input values: inputNumber 4
+2. expected result: 10
+3. test origiol program-s result: 10
+4. test mutant program's result: 4
+#### **Ｍutation Test-case 7:**
+1. Input values: inputNumber 4
+2. expected result: 10
+3. test origiol program-s result: 10
+4. test mutant program's result: 4
+#### **Ｍutation Test-case 8:**
 1. Input values: inputNumber 0
 2. expected result: -1
 3. test origiol program-s result: -1
