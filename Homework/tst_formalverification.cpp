@@ -122,57 +122,16 @@ void FormalVerification::test_case22()
 void FormalVerification::HW3_stress_test_data()
 {
 
-#if 0
-    struct patten{
-        const char *desc;
-        const char *path;
-        int except;
-    } ps [] = {
-        {"空指標", NULL, -1},
-        {"長度為0", "", -1},
-        {"最小輸入", "/", 0},
-        {"最大輸入","XXXXXXXXXXXXXXXXXXXXXXXXXX", -1},
-        {"有效值","/index.html", 0},
-        {"無效值","/unkown.html", -1},
-        {NULL, NULL, 0}
-    }, *p = ps;
-
-
-    QTest::addColumn<int>("result");
-    QTest::addColumn<int>("except");
-
-    StressTesting http_get;
-
-    for (; p->desc != nullptr; p++) {
-        int len = p->path == nullptr ? 0:static_cast<int>(strlen(p->path));
-        int ret;
-
-        ret = http_get.testStressTesting((char *)p->path,len);
-
-        QString descriptions = QString("現在測式:(%1), 輸入字串:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
-            .arg(QString(p->desc), +5, QLatin1Char(' '))
-            .arg(p->path==nullptr?"null":p->path)
-            .arg(len)
-            .arg(p->except)
-            .arg(ret);
-        QTest::newRow(descriptions.toStdString().c_str()) << ret << p->except;
-    }
-#endif
-
     struct patten{
         const char *desc;
         QString phone_no;
         int except;
     } ps [] = {
-        {"測式 1 長度", "1234567", -1},
-        {"測式 1 長度", "", -1},
-        {"測式 1 長度", "+886918123456", 0},
-        {"測式 1 長度", "+8869281234567", -1},
-        {"第一個字元", "+0212345678", 0},
-        {"第一個字元", "-0212345678", -1},
-        {"第一個字元", "0212345678", -1},
-        {"合法字元", "+0212345678", 0},
-        {"合法字元", "+02123456X8", -1},
+        {"1 3 5 7", "021234567", 0},
+        {"2",       "1234567", -1},
+        {"1 4",     "12345678901234", -1},
+        {"1 3 6",   "-886918123456", -1},
+        {"1 3 5 8", "+88692812345a", -1},
         {NULL, NULL, 0}
     }, *p = ps;
 
@@ -182,14 +141,6 @@ void FormalVerification::HW3_stress_test_data()
 
     int ret;
     InputBox_phone_number phone_number;
-#if 0
-    ret = phone_number.__validate_phone_number("68228");
-    qDebug() << "outout is: " << ret;
-    ret = phone_number.__validate_phone_number("0918868228");
-    qDebug() << "outout is: " << ret;
-    ret = phone_number.__validate_phone_number("+0918868228");
-    qDebug() << "outout is: " << ret;
-#endif
     for (; p->desc != nullptr; p++) {
 
         ret = phone_number.__validate_phone_number(p->phone_no);
@@ -200,9 +151,7 @@ void FormalVerification::HW3_stress_test_data()
             .arg(p->phone_no.length())
             .arg(p->except)
             .arg(ret);
-        qDebug() << descriptions;
 
-        qDebug() << descriptions.toStdString().c_str();
         QTest::newRow(descriptions.toStdString().c_str()) << ret << p->except;
     }
 
@@ -210,12 +159,10 @@ void FormalVerification::HW3_stress_test_data()
 }
 void FormalVerification::HW3_stress_test()
 {
-#if 1
     QFETCH(int, result);
     QFETCH(int, except);
 
     QCOMPARE(except,result);
-#endif
 }
 
 QTEST_APPLESS_MAIN(FormalVerification)
