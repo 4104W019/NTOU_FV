@@ -16,11 +16,13 @@ SOURCES +=  tst_formalverification.cpp \
     HW2/edgepaircoverage.cpp \
     HW3/stresstesting.cpp \
     HW4/logicalexpression.cpp \
-    HW5/inputdomain.cpp
+    HW5/inputdomain.cpp \
+    HW8/boundaryvalue.cpp
 
 HEADERS += \
     HW1/linecoverage.h \
     HW2/edgecoverage.h \
     HW3/stresstesting.h \
     HW4/logicalexpression.h \
-    HW5/inputdomain.h
+    HW5/inputdomain.h \
+    HW8/boundaryvalue.h

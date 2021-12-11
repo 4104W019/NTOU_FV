@@ -5,6 +5,7 @@
 #include "HW2/edgecoverage.h"
 #include "HW3/stresstesting.h"
 #include "HW4/logicalexpression.h"
+#include "HW8/boundaryvalue.h"
 
 class Testing : public QObject
 {
@@ -14,8 +15,8 @@ public:
     Testing();
     ~Testing();
 private slots:
-    void HW4_test_data();
-    void HW4_test();
+    void HW8_test_data();
+    void HW8_test();
 private:
     void HW3_test_data();
     void HW3_test();
@@ -23,6 +24,9 @@ private:
     void HW2_test();
     void HW22_test_data();
     void HW22_test();
+
+    void HW4_test_data();
+    void HW4_test();
 
     void HW5_test_data();
     void HW5_test();
@@ -391,6 +395,77 @@ void Testing::HW4_test_data()
 }
 
 void Testing::HW4_test()
+{
+    QFETCH(int, except);
+    QFETCH(int, result);
+
+    QCOMPARE(except, result);
+}
+
+void Testing::HW8_test_data()
+{
+    QTest::addColumn<int>("result");
+    QTest::addColumn<int>("except");
+
+    BoundaryValue BoundaryValue;
+    
+    // HW 8 test_case_01
+    QString descriptions_test_case_01 = QString("HW 8 test_case_01 -> current_temperature: 15");
+    int current_temperature = 15;
+    int excepted_status = 1;
+
+    QTest::newRow(descriptions_test_case_01.toStdString().c_str())
+                  << BoundaryValue.testBoundaryValue(current_temperature)
+                  << excepted_status;
+
+    // HW 8 test_case_02
+    QString descriptions_test_case_02 = QString("HW 8 test_case_02 -> current_temperature: 16");
+    current_temperature = 16;
+    excepted_status = 1;
+
+    QTest::newRow(descriptions_test_case_02.toStdString().c_str())
+                  << BoundaryValue.testBoundaryValue(current_temperature)
+                  << excepted_status;
+
+    // HW 8 test_case_03
+    QString descriptions_test_case_03 = QString("HW 8 test_case_03 -> current_temperature: 17");
+    current_temperature = 17;
+    excepted_status = 0;
+
+    QTest::newRow(descriptions_test_case_03.toStdString().c_str())
+                  << BoundaryValue.testBoundaryValue(current_temperature)
+                  << excepted_status;
+
+    // HW 8 test_case_04
+    QString descriptions_test_case_04 = QString("HW 8 test_case_04 -> current_temperature: 27");
+    current_temperature = 27;
+    excepted_status = 0;
+
+    QTest::newRow(descriptions_test_case_04.toStdString().c_str())
+                  << BoundaryValue.testBoundaryValue(current_temperature)
+                  << excepted_status;
+
+    // HW 8 test_case_05
+    QString descriptions_test_case_05 = QString("HW 8 test_case_05 -> current_temperature: 28");
+    current_temperature = 28;
+    excepted_status = 2;
+
+    QTest::newRow(descriptions_test_case_05.toStdString().c_str())
+                  << BoundaryValue.testBoundaryValue(current_temperature)
+                  << excepted_status;
+
+    // HW 8 test_case_06
+    QString descriptions_test_case_06 = QString("HW 8 test_case_06 -> current_temperature: 29");
+    current_temperature = 29;
+    excepted_status = 2;
+
+    QTest::newRow(descriptions_test_case_06.toStdString().c_str())
+                  << BoundaryValue.testBoundaryValue(current_temperature)
+                  << excepted_status;
+
+}
+
+void Testing::HW8_test()
 {
     QFETCH(int, except);
     QFETCH(int, result);
