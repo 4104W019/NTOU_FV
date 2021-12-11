@@ -2,6 +2,8 @@
 
 ### Sample Code
 ```c++
+using namespace std;
+
 int BoundaryValue::testBoundaryValue(int current_temperature)
 {
         // config
@@ -10,13 +12,13 @@ int BoundaryValue::testBoundaryValue(int current_temperature)
         int status = -1;
         
         if(current_temperature <= temperature_thresh_cold){
-                std::cout << '溫度過冷, 啟動暖氣' << std:endl;
+                cout << '溫度過冷, 啟動暖氣' << endl;
                 status = 1;
         }else if(current_temperature >= temperature_thresh_hot){
-                std::cout << '溫度過熱, 啟動冷氣' << std:endl;
+                cout << '溫度過熱, 啟動冷氣' << endl;
                 status = 2;
         }else{
-                std::cout << '溫度正常...' << std:endl;
+                cout << '溫度正常...' << endl;
                 status = 0;
         }
 
