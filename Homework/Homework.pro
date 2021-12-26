@@ -20,6 +20,7 @@ SOURCES +=  tst_formalverification.cpp \
     HW5/inputDomainSystemLevel.cpp \
     HW5/inputdomain.cpp \
     HW6/mutations.cpp
+    HW7/inputbox_phone_number.cpp
 
 HEADERS += \
     HW1/linecoverage.h \
@@ -28,3 +29,4 @@ HEADERS += \
     HW4/logicalexpression.h \
     HW5/inputdomain.h \
     HW6/mutations.h
+    HW7/inputbox_phone_number.h

@@ -7,6 +7,8 @@
 #include "HW4/logicalexpression.h"
 #include "HW6/mutations.h"
 
+#include "HW7/inputbox_phone_number.h"
+#include<QDebug>
 class Testing : public QObject
 {
     Q_OBJECT
@@ -14,6 +16,9 @@ class Testing : public QObject
 public:
     Testing();
     ~Testing();
+private slots:
+    void HW7_validate_test_data();
+    void HW7_validate_test();
 private:
     void HW3_test_data();
     void HW3_test();
@@ -124,19 +129,19 @@ void Testing::HW22_test()
     QCOMPARE(except, result);
 }
 
-void Testing::HW3_test_data()
+void Testing::HW7_validate_test_data()
 {
+
     struct patten{
         const char *desc;
-        const char *path;
+        QString phone_no;
         int except;
     } ps [] = {
-        {"空指標", NULL, -1},
-        {"長度為0", "", -1},
-        {"最小輸入", "/", 0},
-        {"最大輸入","XXXXXXXXXXXXXXXXXXXXXXXXXX", -1},
-        {"有效值","/index.html", 0},
-        {"無效值","/unkown.html", -1},
+        {"1 3 5 7", "021234567", 0},
+        {"2 3 5 7", "1234567", -1},
+        {"1 4 5 7", "12345678901234", -1},
+        {"1 3 6 7", "-886918123456", -1},
+        {"1 3 5 8", "+88692812345a", -1},
         {NULL, NULL, 0}
     }, *p = ps;
 
@@ -144,24 +149,25 @@ void Testing::HW3_test_data()
     QTest::addColumn<int>("result");
     QTest::addColumn<int>("except");
 
-    StressTesting http_get;
-
+    int ret;
+    InputBox_phone_number phone_number;
     for (; p->desc != nullptr; p++) {
-        int len = p->path == nullptr ? 0:static_cast<int>(strlen(p->path));
-        int ret;
 
-        ret = http_get.testStressTesting((char *)p->path,len);
+        ret = phone_number.__validate_phone_number(p->phone_no);
 
-        QString descriptions = QString("現在測式:(%1), 輸入字串:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
+        QString descriptions = QString("現在測式:(%1), 輸入電話:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
             .arg(QString(p->desc), +5, QLatin1Char(' '))
-            .arg(p->path==nullptr?"null":p->path)
-            .arg(len)
+            .arg(p->phone_no)
+            .arg(p->phone_no.length())
             .arg(p->except)
             .arg(ret);
+
         QTest::newRow(descriptions.toStdString().c_str()) << ret << p->except;
     }
+
+
 }
-void Testing::HW3_test()
+void Testing::HW7_validate_test()
 {
     QFETCH(int, result);
     QFETCH(int, except);
