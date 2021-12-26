@@ -14,8 +14,8 @@ public:
     FormalVerification();
     ~FormalVerification();
 private slots:
-    void HW3_stress_test_data();
-    void HW3_stress_test();
+    void HW7_validate_test_data();
+    void HW7_validate_test();
 private:
     /**
      * @brief test_case1_data
@@ -119,7 +119,7 @@ void FormalVerification::test_case22()
     QCOMPARE(except, result);
 }
 
-void FormalVerification::HW3_stress_test_data()
+void FormalVerification::HW7_validate_test_data()
 {
 
     struct patten{
@@ -157,7 +157,7 @@ void FormalVerification::HW3_stress_test_data()
 
 
 }
-void FormalVerification::HW3_stress_test()
+void FormalVerification::HW7_validate_test()
 {
     QFETCH(int, result);
     QFETCH(int, except);
