@@ -106,14 +106,15 @@ D --> E{5. i<path.size}
 E --> |True| F(6. i++)
 F --> B
 ```
+![Control Flow Graph](./pics/ControlFlowGraph.png)
 1. 寫出有100% coverage的 test cases
 > Input Values: x=10, path.size()=6
 > Expected Result: 11
 > Test Program's Result: 11
 > Criteria Analysis: 
->> a. Edge Coverage
->> (1,2),(2,3),(2,4),(4,5),(5,6),(6,2)
->> b. Edge-Pair Coverage
->> (1,2,3),(1,2,4),(2,4,5),(4,5,6),(6,2,3),(6,2,4)
->> c. Test Path Coverage
->> (1,2,3),(1,2,4,5,6,2,3) 
+> > a. Edge Coverage
+> > (1,2),(2,3),(2,4),(4,5),(5,6),(6,2)
+> > b. Edge-Pair Coverage
+> > (1,2,3),(1,2,4),(2,4,5),(4,5,6),(6,2,3),(6,2,4)
+> > c. Test Path Coverage
+> > (1,2,3),(1,2,4,5,6,2,3) 
