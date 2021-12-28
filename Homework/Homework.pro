@@ -19,8 +19,9 @@ SOURCES +=  tst_formalverification.cpp \
     HW4/logicalexpression.cpp \
     HW5/inputDomainSystemLevel.cpp \
     HW5/inputdomain.cpp \
-    HW6/mutations.cpp
-    HW7/inputbox_phone_number.cpp
+    HW6/mutations.cpp \
+    HW7/inputbox_phone_number.cpp \
+    HW8/boundaryvalue.cpp
 
 HEADERS += \
     HW1/linecoverage.h \
@@ -28,5 +29,6 @@ HEADERS += \
     HW3/stresstesting.h \
     HW4/logicalexpression.h \
     HW5/inputdomain.h \
-    HW6/mutations.h
-    HW7/inputbox_phone_number.h
+    HW6/mutations.h \
+    HW7/inputbox_phone_number.h \
+    HW8/boundaryvalue.h
