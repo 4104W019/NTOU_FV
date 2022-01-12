@@ -9,15 +9,15 @@ int BoundaryValue::testBoundaryValue(int current_temperature)
         int temperature_thresh_cold = 16;
         int temperature_thresh_hot = 28;
         int status = -1;
-        
+//        char *status_[3]={ "the temperature is suitable.",
+//                          ,"too cold, turn on the heating."
+//                          ,"too hot, turn on the air condition."
+//                         };
         if(current_temperature <= temperature_thresh_cold){
-                cout << '溫度過冷, 啟動暖氣' << endl;
                 status = 1;
         }else if(current_temperature >= temperature_thresh_hot){
-                cout << '溫度過熱, 啟動冷氣' << endl;
                 status = 2;
         }else{
-                cout << '溫度正常...' << endl;
                 status = 0;
         }
 

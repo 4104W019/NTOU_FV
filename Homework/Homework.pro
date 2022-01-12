@@ -26,6 +26,7 @@ SOURCES +=  tst_formalverification.cpp \
 HEADERS += \
     HW1/linecoverage.h \
     HW2/edgecoverage.h \
+    HW3/hw3.h \
     HW3/stresstesting.h \
     HW4/logicalexpression.h \
     HW5/inputdomain.h \

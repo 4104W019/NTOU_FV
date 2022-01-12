@@ -66,7 +66,8 @@ void Testing::HW1_test_data()
     int excepts[2] = {-1,45};
 
     for(int i=0; i<2; ++i){
-        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+        QString description = QString("HW1(lineCoverage) Input = %1, Excepted = %2").arg(test[i]).arg(excepts[i]);
+        QTest::newRow(description.toStdString().c_str())
                 << lineCoverage.thePartialSums(test[i]) ///< here
                 << excepts[i];
     }
@@ -90,7 +91,8 @@ void Testing::HW2_test_data()
     int excepts[3] = {-1,0,30};  /// sum = 1+2+...+n, if(sum%2) sum /= 2; else sum *= 2
 
     for(int i=0; i<3; ++i){
-        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+        QString description = QString("HW2(edgeCoverage) Input = %1, Excepted = %2").arg(test[i]).arg(excepts[i]);
+        QTest::newRow(description.toStdString().c_str())
                 << edgeCoverage.testLoop(test[i])
                 << excepts[i];
     }
@@ -114,7 +116,9 @@ void Testing::HW22_test_data()
     int excepts[3] = {-1,15,0};
 
     for(int i=0; i<3; ++i){
-        QTest::newRow(QString::number(test[i]).toStdString().c_str())
+        QString description = QString("HW22(testEdgePairCoverage) Input = %1, Excepted = %2").arg(test[i]).arg(excepts[i]);
+
+        QTest::newRow(description.toStdString().c_str())
                 << edgeCoverage.testEdgePairCoverage(test[i])
                 << excepts[i];
     }
@@ -147,7 +151,7 @@ void Testing::HW3_test_data()
 
         ret = http_get.testStressTesting((char *)p->path,len);
 
-        QString descriptions = QString("現在測式:(%1), 輸入字串:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
+        QString descriptions = QString("HW3(StressTesting) 現在測式:(%1), 輸入字串:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
                                    .arg(QString(p->desc), +5, QLatin1Char(' '))
                                    .arg(p->path==nullptr?"null":p->path)
                                    .arg(len)
@@ -179,7 +183,7 @@ void Testing::HW4_test_data()
     LogicalExpression LogicalExpression;
 
     // HW 4-1 test_case_01
-    QString descriptions_test_case_01 = QString("HW 4-1 test_case_01 -> total condition: true");
+    QString descriptions_test_case_01 = QString("HW4-1(LogicalExpression) test_case_01 -> total condition: true");
     int data_test_case_01[3] = { 100, 500, 600 };
     int *amounts = data_test_case_01;
     int amount_size = 3;
@@ -194,7 +198,7 @@ void Testing::HW4_test_data()
 
 
     // HW 4-1 test_case_02
-    QString descriptions_test_case_02 = QString("HW 4-1 test_case_02 -> total condition: false");
+    QString descriptions_test_case_02 = QString("HW4-1(LogicalExpression) test_case_02 -> total condition: false");
     int data_test_case_02[3] = { 100, 500, 600 };
     amounts = data_test_case_02;
     is_black_friday = false;
@@ -208,7 +212,7 @@ void Testing::HW4_test_data()
 
 
     // HW 4-2 test_case_01
-    QString descriptions_hw42_test_case_01 = QString("HW 4-2 test_case_01 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: true");
+    QString descriptions_hw42_test_case_01 = QString("HW4-2(LogicalExpression) test_case_01 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: true");
     int data_hw42_test_case_01[3] = { 100, 500, 600 };
     amounts = data_hw42_test_case_01;
     is_black_friday = true;
@@ -221,7 +225,7 @@ void Testing::HW4_test_data()
         << discounted_amount;
 
     // HW 4-2 test_case_02
-    QString descriptions_hw42_test_case_02 = QString("HW 4-2 test_case_02 -> >= amount_to_get_discount: false, isBlackFriday: false, isChristmas: false");
+    QString descriptions_hw42_test_case_02 = QString("HW4-2(LogicalExpression) test_case_02 -> >= amount_to_get_discount: false, isBlackFriday: false, isChristmas: false");
     int data_hw42_test_case_02[3] = { 100, 200, 300 };
     amounts = data_hw42_test_case_02;
     is_black_friday = false;
@@ -240,7 +244,7 @@ void Testing::HW4_test_data()
     int data_hw43_false[3] = { 100, 200, 300 };
     int *amounts_false = data_hw43_false;
 
-    QString descriptions_hw43_test_case_01 = QString("HW 4-3 test_case_01 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: true");
+    QString descriptions_hw43_test_case_01 = QString("HW4-3(LogicalExpression) test_case_01 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: true");
     is_black_friday = true;
     is_christmas = true;
     discounted_amount = 780;
@@ -248,14 +252,14 @@ void Testing::HW4_test_data()
         << LogicalExpression.testLogicalExpression(amounts_true, amount_size,
                                                    is_black_friday, is_christmas)
         << discounted_amount;
-    QString descriptions_hw43_test_case_02 = QString("HW 4-3 test_case_02 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: true");
+    QString descriptions_hw43_test_case_02 = QString("HW4-3(LogicalExpression) test_case_02 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: true");
     discounted_amount = 540;
     QTest::newRow(descriptions_hw43_test_case_02.toStdString().c_str())
         << LogicalExpression.testLogicalExpression(amounts_false, amount_size,
                                                    is_black_friday, is_christmas)
         << discounted_amount;
 
-    QString descriptions_hw43_test_case_03 = QString("HW 4-3 test_case_03 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: false");
+    QString descriptions_hw43_test_case_03 = QString("HW4-3(LogicalExpression) test_case_03 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: false");
     is_black_friday = true;
     is_christmas = false;
     discounted_amount = 780;
@@ -263,14 +267,14 @@ void Testing::HW4_test_data()
         << LogicalExpression.testLogicalExpression(amounts_true, amount_size,
                                                    is_black_friday, is_christmas)
         << discounted_amount;
-    QString descriptions_hw43_test_case_04 = QString("HW 4-3 test_case_04 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: false");
+    QString descriptions_hw43_test_case_04 = QString("HW4-3(LogicalExpression) test_case_04 -> >= amount_to_get_discount: true, isBlackFriday: true, isChristmas: false");
     discounted_amount = 540;
     QTest::newRow(descriptions_hw43_test_case_04.toStdString().c_str())
         << LogicalExpression.testLogicalExpression(amounts_false, amount_size,
                                                    is_black_friday, is_christmas)
         << discounted_amount;
 
-    QString descriptions_hw43_test_case_05 = QString("HW 4-3 test_case_05 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: true");
+    QString descriptions_hw43_test_case_05 = QString("HW4-3(LogicalExpression) test_case_05 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: true");
     is_black_friday = false;
     is_christmas = true;
     discounted_amount = 780;
@@ -278,14 +282,14 @@ void Testing::HW4_test_data()
         << LogicalExpression.testLogicalExpression(amounts_true, amount_size,
                                                    is_black_friday, is_christmas)
         << discounted_amount;
-    QString descriptions_hw43_test_case_06 = QString("HW 4-3 test_case_06 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: true");
+    QString descriptions_hw43_test_case_06 = QString("HW4-3(LogicalExpression) test_case_06 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: true");
     discounted_amount = 540;
     QTest::newRow(descriptions_hw43_test_case_06.toStdString().c_str())
         << LogicalExpression.testLogicalExpression(amounts_false, amount_size,
                                                    is_black_friday, is_christmas)
         << discounted_amount;
 
-    QString descriptions_hw43_test_case_07 = QString("HW 4-3 test_case_07 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: false");
+    QString descriptions_hw43_test_case_07 = QString("HW4-3(LogicalExpression) test_case_07 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: false");
     is_black_friday = false;
     is_christmas = false;
     discounted_amount = 1080;
@@ -293,7 +297,7 @@ void Testing::HW4_test_data()
         << LogicalExpression.testLogicalExpression(amounts_true, amount_size,
                                                    is_black_friday, is_christmas)
         << discounted_amount;
-    QString descriptions_hw43_test_case_08 = QString("HW 4-3 test_case_08 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: false");
+    QString descriptions_hw43_test_case_08 = QString("HW4-3(LogicalExpression) test_case_08 -> >= amount_to_get_discount: true, isBlackFriday: false, isChristmas: false");
     discounted_amount = 540;
     QTest::newRow(descriptions_hw43_test_case_08.toStdString().c_str())
         << LogicalExpression.testLogicalExpression(amounts_false, amount_size,
@@ -344,7 +348,7 @@ void Testing::HW5_system_data()
     for(int32_t i=0; i<7;i++){
         uint32_t ret = inputDomain.finalGrade(i%3,points[i]);
 
-        QString description = QString("5-1)%1 Categorization, subject(%2), output(%3) expect(%4)")
+        QString description = QString("HW5-1(categorization) %1 Categorization, subject(%2), output(%3) expect(%4)")
                                   .arg(i+1)
                                   .arg(i%3)
                                   .arg(categorization_excepts[i])
@@ -391,7 +395,7 @@ void Testing::HW5_system_data()
         for(int32_t j=0; j<7;j++){
             uint32_t ret = inputDomain.finalGrade(i,points[j]);
 
-            QString description = QString("5-2)%1 Combinatorial, subject(%2), output(%3)  expect(%4)")
+            QString description = QString("HW5-2(Combinatorial) %1 Combinatorial, subject(%2), output(%3)  expect(%4)")
                                       .arg(i*7+j+1)
                                       .arg(i)
                                       .arg(ret)
@@ -558,7 +562,7 @@ void Testing::HW7_validate_test_data()
 
         ret = phone_number.__validate_phone_number(p->phone_no);
 
-        QString descriptions = QString("現在測式:(%1), 輸入電話:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
+        QString descriptions = QString("HW7(validate_test) 現在測式:(%1), 輸入電話:(%2), 輸入長度(%3), 期望輸出(%4) 實際輸出(%5)")
                                    .arg(QString(p->desc), +5, QLatin1Char(' '))
                                    .arg(p->phone_no)
                                    .arg(p->phone_no.length())
@@ -587,7 +591,7 @@ void Testing::HW8_test_data()
     BoundaryValue BoundaryValue;
     
     // HW 8 test_case_01
-    QString descriptions_test_case_01 = QString("HW 8 test_case_01 -> current_temperature: 15");
+    QString descriptions_test_case_01 = QString("HW8(Boundary) test_case_01 -> current_temperature: 15");
     int current_temperature = 15;
     int excepted_status = 1;
 
@@ -596,7 +600,7 @@ void Testing::HW8_test_data()
                   << excepted_status;
 
     // HW 8 test_case_02
-    QString descriptions_test_case_02 = QString("HW 8 test_case_02 -> current_temperature: 16");
+    QString descriptions_test_case_02 = QString("HW8(Boundary) test_case_02 -> current_temperature: 16");
     current_temperature = 16;
     excepted_status = 1;
 
@@ -605,7 +609,7 @@ void Testing::HW8_test_data()
                   << excepted_status;
 
     // HW 8 test_case_03
-    QString descriptions_test_case_03 = QString("HW 8 test_case_03 -> current_temperature: 17");
+    QString descriptions_test_case_03 = QString("HW8(Boundary) test_case_03 -> current_temperature: 17");
     current_temperature = 17;
     excepted_status = 0;
 
@@ -614,7 +618,7 @@ void Testing::HW8_test_data()
                   << excepted_status;
 
     // HW 8 test_case_04
-    QString descriptions_test_case_04 = QString("HW 8 test_case_04 -> current_temperature: 27");
+    QString descriptions_test_case_04 = QString("HW8(Boundary) test_case_04 -> current_temperature: 27");
     current_temperature = 27;
     excepted_status = 0;
 
@@ -623,7 +627,7 @@ void Testing::HW8_test_data()
                   << excepted_status;
 
     // HW 8 test_case_05
-    QString descriptions_test_case_05 = QString("HW 8 test_case_05 -> current_temperature: 28");
+    QString descriptions_test_case_05 = QString("HW8(Boundary) test_case_05 -> current_temperature: 28");
     current_temperature = 28;
     excepted_status = 2;
 
@@ -632,7 +636,7 @@ void Testing::HW8_test_data()
                   << excepted_status;
 
     // HW 8 test_case_06
-    QString descriptions_test_case_06 = QString("HW 8 test_case_06 -> current_temperature: 29");
+    QString descriptions_test_case_06 = QString("HW8(Boundary) test_case_06 -> current_temperature: 29");
     current_temperature = 29;
     excepted_status = 2;
 
