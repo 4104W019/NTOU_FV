@@ -4,7 +4,7 @@
 
 ---
 ## 1. Sample Code
-```c++
+```c++ {.line-numbers}
 int Mutations::orgProgram(int inputNumber)
 {
     int result = 0; //1
@@ -31,7 +31,8 @@ int Mutations::mutProgram_1(int inputNumber)
 int Mutations::mutProgram_2(int inputNumber)
 {
     int result = 0;
-    if(1<= inputNumber or inputNumber <= 10){   //#2    and -> or
+    //#2 and -> or
+    if(1<= inputNumber or inputNumber <= 10){ 
         for(int i=1; i<=inputNumber; ++i){
             result +=i;
         }
@@ -43,18 +44,21 @@ int Mutations::mutProgram_3(int inputNumber)
 {
     int result = 0;
     if(1<= inputNumber and inputNumber <= 10){
-        for(int i=10; i<=inputNumber; ++i){  //#3    1 -> 10
+        //#3 1 -> 10
+        for(int i=10; i<=inputNumber; ++i){  
             result +=i;
         }
         return result;
     }
     return -1;
 }
-int Mutations::mutProgram_4(int inputNumber)    //inputNumber = 4
+int Mutations::mutProgram_4(int inputNumber) 
+//inputNumber = 4
 {
     int result = 0;
     if(1<= inputNumber and inputNumber <= 10){
-        for(int i=1; i<inputNumber; ++i){  //#4   <= -> <
+        //#4 <= -> <
+        for(int i=1; i<inputNumber; ++i){  
             result +=i;
         }
         return result;  //1+2+3
@@ -64,8 +68,9 @@ int Mutations::mutProgram_4(int inputNumber)    //inputNumber = 4
 int Mutations::mutProgram_5(int inputNumber)
 {
     int result = 0;
-    if(1<= inputNumber and inputNumber <= 10){  //inputNumber = 4
-        for(int i=1; i<=inputNumber; i=i+2){  //#5    ++i -> i=i+2
+    if(1<= inputNumber and inputNumber <= 10){  
+        //#5    ++i -> i=i+2
+        for(int i=1; i<=inputNumber; i=i+2){  
             result +=i;
         }
         return result;  //
@@ -77,7 +82,8 @@ int Mutations::mutProgram_6(int inputNumber)
     int result = 0;
     if(1<= inputNumber and inputNumber <= 10){
         for(int i=1; i<=inputNumber; ++i){
-            result +=inputNumber; //#6    i -> inputNumber
+            //#6    i -> inputNumber
+            result +=inputNumber; 
         }
         return result;
     }
@@ -89,8 +95,8 @@ int Mutations::mutProgram_7(int inputNumber)
     if(1<= inputNumber and inputNumber <= 10){
         for(int i=1; i<=inputNumber; ++i){
             result +=i;
-        }
-        return inputNumber;  //#7    result -> inputNumber
+        } //#7    result -> inputNumber
+        return inputNumber;  
     }
     return -1;
 }

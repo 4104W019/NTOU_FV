@@ -2,7 +2,7 @@
 
 ## 待測程式
 
-```c++
+```c++ {.line-numbers}
 
 static int __validate_length(QString n)
 {
@@ -142,28 +142,32 @@ Totals: 7 passed, 0 failed, 0 skipped, 0 blacklisted, 14ms
 
 
 ```
-
+#### **Test-case 1:**
 > 1) Input values: 輸入電話:(021234567), 輸入長度(9)
 > 2) expected result(正確的結果): 0
 > 3) test program's result: 0
-> 4) criteria analysis: **(1), (3), (5), 7)**: 符合長度 >= 8，符合長度 <= 13，第一個字元可以是 **+** 號或數字 **0-9** ，第二個字完後必須是數字0-9
+> 4) criteria analysis: **(1), (3), (5), 7)**: 
+符合長度 >= 8，符合長度 <= 13，
+第一個字元可以是 **+** 號
+或數字 **0-9** ，第二個字完後必須是數字0-9
 
-
+#### **Test-case 2:**
 > 1) Input values:  輸入電話:(1234567), 輸入長度(7)
 > 2) expected result(正確的結果): -1
 > 3) test program's result: -1
 > 4) criteria analysis: **(2), (3), **: **不符合** 長度 >= 8
-
+#### **Test-case 3:**
 > 1) Input values: 輸入電話:(12345678901234), 輸入長度(14)
 > 2) expected result(正確的結果): -1
 > 3) test program's result: -1
 > 4) criteria analysis: **(4)** 符合長度 >= 8, **不符合** 長度 <= 13
-
+#### **Test-case 4:**
 > 1) Input values: 輸入電話:(-886918123456), 輸入長度(13)
 > 2) expected result(正確的結果): -1
 > 3) test program's result: -1
 > 4) criteria analysis: **(6)** : **不符合** 第一個字元可以是"+"號或數字0-9
 
+#### **Test-case 5:**
 > 1) Input values: 輸入電話:(+88692812345a), 輸入長度(13)
 > 2) expected result(正確的結果): -1
 > 3) test program's result: -1

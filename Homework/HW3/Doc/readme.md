@@ -5,7 +5,7 @@
 
 ## 1. Sample Code
 
-```c++
+```c++ {.line-numbers}
 
 static int http_get(int s, char *path, int path_len)
 {
@@ -14,10 +14,10 @@ static int http_get(int s, char *path, int path_len)
 
         if (path_len == 0)
                 goto not_found;
-        //fprintf(stderr, "PTM:%s %d(%s)\n", __FUNCTION__, __LINE__, path);
+
         if (strcmp(path, "/") == 0)
                 strcpy(path, "index.html");
-        //fprintf(stderr, "PTM:%s %d\n", __FUNCTION__, __LINE__);
+
         if (*path == '/')
                 path++;
         if ((fd = open(path, O_RDONLY)) == -1)
@@ -51,14 +51,12 @@ int StressTesting::testStressTesting(char *url, int path_len)
     strncpy(path, url, MAX_PATH_LEN - 1);
     return http_get(2 /* @stderr */, path, path_len);
 }
-
-
 ```
 ---
 
 ## 2. Result of the testing.
 ### 2-1. Test Cases
-```C++
+```C++ {.line-numbers}
 void FormalVerification::HW3_stress_test_data()
 {
     struct patten{
@@ -140,7 +138,7 @@ PASS   : FormalVerification::HW3_stress_test(現在測式:(  無效值), 輸入�
 > 4) criteria analysis: 最小輸入
 
 #### **Stressing Test-case 4: 最大輸入**
-> 1) Input values: 輸入字串:(XXXXXXXXXXXXXXXXXXXXXXXXXX), 輸入長度(26)
+> 1) Input values: 輸入字串:(XXXX~XXXXX), 輸入長度(26)
 > 2) expected result(正確的結果): -1
 > 3) test program's result: -1
 > 4) criteria analysis: 最大輸入

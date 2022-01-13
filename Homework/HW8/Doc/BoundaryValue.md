@@ -1,7 +1,7 @@
 # BoundaryValue
 
 ### Sample Code
-```c++
+```c++  {.line-numbers}
 using namespace std;
 
 int BoundaryValue::testBoundaryValue(int current_temperature)

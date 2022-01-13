@@ -76,24 +76,20 @@ uint32_t InputDomain::finalGrade(int32_t subject, QList<uint8_t> &points)
                 return MATH_PointOutOfRange;
             else
                 return LANG_PointOutOfRange;
-
         }
         aver += point;
     }
     aver /= numbersOfPoints;
-
     /// === judgement ===
     if(aver >=70)
     {
         result = LANG_Pass;
-    }
-    else{
+    }else{
         result = LANG_Failed;
     }
 
     if(subject == SUBJECT_MATH)
         result += (MATH_PointOutOfRange-LANG_PointOutOfRange);
-
     return  result;
 }
 ```
@@ -256,232 +252,179 @@ PASS   : Testing::HW5_system(5-2)21 Combinatorial, subject(2), output(14)  expec
 ### 3-1.Categorization (每個類別)
 
 #### **Test-case 1: (SUBJECT_LANG, {empty})**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [empty]})|
-|Expected result|8|
-|Test program's result|8|
-|Domain Characteristics | 語言科目全缺考(LANG_MISSED_ALL) |
+>1. Input values: (SUBJECT_LANG, [empty]}) 
+>2. EXpected result: 8
+>3. Test result: 8
+>4. Domain Characteristics: LANG_MISSED_ALL
+
 
 #### **Test-case 2: (SUBJECT_MATH, [10])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_MATH, [10])|
-|Expected result|11|
-|Test program's result|11|
-|Domain Characteristics| 數學科目缺考兩次(MATH_MISSED_TWO)|
+>1. Input values: (SUBJECT_MATH, [10])) 
+>2. EXpected result: 11
+>3. Test result: 11
+>4. Domain Characteristics: MATH_MISSED_TWO
 
 #### **Test-case 3: (SUBJECT_MAX, [10,20])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_MAX, [10,20])|
-|Expected result|14|
-|Test program's result|14|
-|Domain Characteristics| 無效科目(SubjectOutOfRange) |
+>1. Input values: (SUBJECT_MAX, [10,20]) 
+>2. EXpected result: 14
+>3. Test result: 14
+>4. Domain Characteristics: SubjectOutOfRange
 
 #### **Test-case 4: (SUBJECT_LANG, [10,20,30])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10,20,30])|
-|Expected result|1|
-|Test program's result|1|
-|Domain Characteristics| 語言科目不及格(LANG_Failed)|
+>1. Input values: (SUBJECT_LANG, [10,20,30])
+>2. EXpected result: 1
+>3. Test result: 1
+>4. Domain Characteristics: LANG_Failed
 
 #### **Test-case 5: (SUBJECT_MATH, [80,90,100])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_MATH, [80,90,100])|
-|Expected result|5|
-|Test program's result|5|
-|Domain Characteristics| 數學科目及格(MATH_Pass)|
+>1. Input values:  (SUBJECT_MATH, [80,90,100])
+>2. EXpected result: 5
+>3. Test result: 5
+>4. Domain Characteristics: MATH_Pass
   
 #### **Test-case 6: (SUBJECT_MAX, [90,100,110])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_MAX, [90,100,110])|
-|Expected result|14|
-|Test program's result|14|
-|Domain Characteristics| 無效科目(SubjectOutOfRange)|
+>1. Input values:  (SUBJECT_MAX, [90,100,110])
+>2. EXpected result: 14
+>3. Test result: 14
+>4. Domain Characteristics: SubjectOutOfRange
 
 #### **Test-case 7: (SUBJECT_LANG, [1,2,3,4,5])**
-|Items|Description|
-|----|----|
-|Input values|(subject, point)=(SUBJECT_LANG, [1,2,3,4,5])|
-|Expected result|9|
-|Test program's result|9|
-|Domain Characteristics| 語言科目輸入超過(LANG_OVER_THREE)|
+>1. Input values:  (SUBJECT_LANG, [1,2,3,4,5])
+>2. EXpected result: 9
+>3. Test result: 9
+>4. Domain Characteristics: LANG_OVER_THREE
+
 ---
 ### 3-2.Combinatorial (各種類別的排列組合)
 
 #### **Test-case 1-1: (SUBJECT_LANG, [empty])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [empty])|
-|Expected result|8|
-|Test program's result|8|
-|Domain Characteristics| 語言科目全缺考(LANG_MISSED_ALL) |
+>1. Input values:  (SUBJECT_LANG, [empty])
+>2. EXpected result: 8
+>3. Test result: 8
+>4. Domain Characteristics: LANG_MISSED_ALL
 
 #### **Test-case 1-2: (SUBJECT_LANG, [10])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10])|
-|Expected result|7|
-|Test program's result|7|
-|Domain Characteristics| 語言科目缺考2次(LANG_MISSED_TWO) |
+>1. Input values:  (SUBJECT_LANG, [10])
+>2. EXpected result: 7
+>3. Test result: 7
+>4. Domain Characteristics: LANG_MISSED_TWO
 
 #### **Test-case 1-3: (SUBJECT_LANG, [10,20])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10,20])|
-|Expected result|6|
-|Test program's result|6|
-|Domain Characteristics| 語言科目缺考1次(LANG_MISSED_ONE) |
+>1. Input values:  (SUBJECT_LANG, [10,20])
+>2. EXpected result: 6
+>3. Test result: 6
+>4. Domain Characteristics: LANG_MISSED_ONE
 
 #### **Test-case 1-4: (SUBJECT_LANG, [10,20,30])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10,20,30])|
-|Expected result|1|
-|Test program's result|1|
-|Domain Characteristics| 語言科目不及格(LANG_Failed) |
+>1. Input values:  (SUBJECT_LANG, [10,20,30])
+>2. EXpected result: 1
+>3. Test result: 1
+>4. Domain Characteristics: LANG_Failed
 
 #### **Test-case 1-5: (SUBJECT_LANG, [80,90,100])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [80,90,100])|
-|Expected result|2|
-|Test program's result|2|
-|Domain Characteristics| 語言科目及格(LANG_Pass) |
+>1. Input values: (SUBJECT_LANG, [80,90,100])
+>2. EXpected result: 2
+>3. Test result: 2
+>4. Domain Characteristics: LANG_Pass
 
 #### **Test-case 1-6: (SUBJECT_LANG, [90,100,110])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [90,100,110])|
-|Expected result|0|
-|Test program's result|0|
-|Domain Characteristics| 語言科目分數輸入錯誤(LANG_PointOutOfRange) |
+>1. Input values: (SUBJECT_LANG, [90,100,110])
+>2. EXpected result: 0
+>3. Test result: 0
+>4. Domain Characteristics: LANG_PointOutOfRange
 
 #### **Test-case 1-7: (SUBJECT_LANG, [1,2,3,4,5])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [1,2,3,4,5])|
-|Expected result|9|
-|Test program's result|9|
-|Domain Characteristics| 語言科目輸入超過(LANG_OVER_THREE) |
+>1. Input values: (SUBJECT_LANG, [1,2,3,4,5])
+>2. EXpected result: 9
+>3. Test result: 9
+>4. Domain Characteristics: LANG_OVER_THREE
 
 
 #### **Test-case 2-1: (SUBJECT_MATH, [empty])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [empty])|
-|Expected result|12|
-|Test program's result|12|
-|Domain Characteristics| 數學科目全缺考(MATH_MISSED_ALL) |
+>1. Input values:  (SUBJECT_MATH, [empty])
+>2. EXpected result: 12
+>3. Test result: 12
+>4. Domain Characteristics: LANG_MISSED_ALL
 
 #### **Test-case 2-2: (SUBJECT_MATH, [10])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10])|
-|Expected result|11|
-|Test program's result|11|
-|Domain Characteristics| 數學科目缺考2次(MATH_MISSED_TWO) |
+>1. Input values:  (SUBJECT_MATH, [10])
+>2. EXpected result: 11
+>3. Test result: 11
+>4. Domain Characteristics: MATH_MISSED_TWO
 
 #### **Test-case 2-3: (SUBJECT_MATH, [10,20])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10,20])|
-|Expected result|10|
-|Test program's result|10|
-|Domain Characteristics| 數學科目缺考1次(MATH_MISSED_ONE) |
+>1. Input values:  (SUBJECT_MATH, [10,20])
+>2. EXpected result: 10
+>3. Test result: 10
+>4. Domain Characteristics: MATH_MISSED_ONE
 
 #### **Test-case 2-4: (SUBJECT_MATH, [10,20,30])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10,20,30])|
-|Expected result|4|
-|Test program's result|4|
-|Domain Characteristics| 數學科目不及格(MATH_Failed) |
+>1. Input values:  (SUBJECT_MATH, [10,20,30])
+>2. EXpected result: 4
+>3. Test result: 4
+>4. Domain Characteristics: MATH_Failed
 
 #### **Test-case 2-5: (SUBJECT_MATH, [80,90,100])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [80,90,100])|
-|Expected result|5|
-|Test program's result|5|
-|Domain Characteristics| 數學科目及格(MATH_Pass) |
+>1. Input values: (SUBJECT_MATH, [80,90,100])
+>2. EXpected result: 5
+>3. Test result: 5
+>4. Domain Characteristics: MATH_Pass
 
 #### **Test-case 2-6: (SUBJECT_MATH, [90,100,110])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [90,100,110])|
-|Expected result|3|
-|Test program's result|3|
-|Domain Characteristics| 數學科目分數輸入錯誤(MATH_PointOutOfRange) |
+>1. Input values: (SUBJECT_MATH, [90,100,110])
+>2. EXpected result: 3
+>3. Test result: 3
+>4. Domain Characteristics: MATH_PointOutOfRange
 
 #### **Test-case 2-7: (SUBJECT_MATH, [1,2,3,4,5])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [1,2,3,4,5])|
-|Expected result|13|
-|Test program's result|13|
-|Domain Characteristics| 數學科目輸入超過(MATH_OVER_THREE) |
+>1. Input values: (SUBJECT_MATH, [1,2,3,4,5])
+>2. EXpected result: 13
+>3. Test result: 13
+>4. Domain Characteristics: MATH_OVER_THREE
 
 
 #### **Test-case 3-1: (SUBJECT_MAX, [empty])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [empty])|
-|Expected result|14|
-|Test program's result|14|
-|Domain Characteristics| 無效科目(SubjectOutOfRange) |
+>1. Input values:  (SUBJECT_MAX, [empty])
+>2. EXpected result: 14
+>3. Test result: 14
+>4. Domain Characteristics: SubjectOutOfRange
 
 #### **Test-case 3-2: (SUBJECT_MAX, [10])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10])|
-|Expected result|14|
-|Test program's result|14|
-|Domain Characteristics| 無效科目(SubjectOutOfRange) |
+>1. Input values:  (SUBJECT_MAX, [10])
+>2. EXpected result: 14
+>3. Test result: 14
+>4. Domain Characteristics: SubjectOutOfRange
 
 #### **Test-case 3-3: (SUBJECT_MAX, [10,20])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10,20])|
-|Expected result|14|
-|Test program's result|14|
-|Domain Characteristics| 無效科目(SubjectOutOfRange) |
+>1. Input values:  (SUBJECT_MAX, [10,20])
+>2. EXpected result: 14
+>3. Test result: 14
+>4. Domain Characteristics: SubjectOutOfRange
 
 #### **Test-case 3-4: (SUBJECT_MAX, [10,20,30])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [10,20,30])|
-|Expected result|14|
-|Test program's result|14|
-|Domain Characteristics| 無效科目(SubjectOutOfRange) |
+>1. Input values:  (SUBJECT_MAX, [10,20,30])
+>2. EXpected result: 14
+>3. Test result: 14
+>4. Domain Characteristics: SubjectOutOfRange
 
 #### **Test-case 3-5: (SUBJECT_MAX, [80,90,100])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [80,90,100])|
-|Expected result|14|
-|Test program's result|14|
-|Domain Characteristics| 無效科目(SubjectOutOfRange) |
+>1. Input values: (SUBJECT_MAX, [80,90,100])
+>2. EXpected result: 14
+>3. Test result: 14
+>4. Domain Characteristics: SubjectOutOfRange
 
 #### **Test-case 3-6: (SUBJECT_MAX, [90,100,110])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [90,100,110])|
-|Expected result|14|
-|Test program's result|14|
-|Domain Characteristics| 無效科目(SubjectOutOfRange) |
+>1. Input values: (SUBJECT_MAX, [90,100,110])
+>2. EXpected result: 14
+>3. Test result: 14
+>4. Domain Characteristics: SubjectOutOfRange
 
 #### **Test-case 3-7: (SUBJECT_MAX, [1,2,3,4,5])**
-|Items|Description|
-|----|----|
-|Input values|(SUBJECT_LANG, [1,2,3,4,5])|
-|Expected result|14|
-|Test program's result|14|
-|Domain Characteristics| 無效科目(SubjectOutOfRange) |
+>1. Input values: (SUBJECT_MAX, [1,2,3,4,5])
+>2. EXpected result: 14
+>3. Test result: 14
+>4. Domain Characteristics: SubjectOutOfRange
+
 
 ---
 
